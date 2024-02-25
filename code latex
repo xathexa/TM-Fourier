@@ -1,0 +1,164 @@
+\documentclass{article}
+
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\usepackage{amsmath}
+
+\usepackage[french]{babel}
+
+\usepackage{amsthm}
+
+\usepackage{amsfonts}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}{Définition}
+
+\newtheorem{proposition}{Proposition}
+
+\newtheorem{remarque}{Remarque}
+
+\newtheorem{example}{Exemple}
+
+\newtheorem{corrolaire}{Corrolaire}
+
+\title{TM analyse de Fourier}
+
+\author{Xavier Cherpit}
+
+\date{October 2023}
+
+\begin{document}
+
+\maketitle
+\section{Table des matières}
+
+
+\section{Introduction}
+L'analyse de Fourier a été élaboré au début du XIX siècle par Joseph Fourier (1768-1830). 
+\section{Séries de Fourier}
+\begin{definition} 
+Une fonction $f$ est dite périodique ou $T$-périodique si $\exists T > 0$ minimal tel que  $f(x+T) = f(x)$ $\forall x \in \mathbb{R}$
+
+\end{definition}
+
+\begin{example}
+    On a les fonctions $\sin\left(2\pi\frac{n}{T}\right)$ et $\cos\left(2\pi\frac{n}{T}\right)$ avec $n \in \mathbb{R}$ de périodes $\frac{T}{n}$ (et donc aussi de T)
+\end{example}
+
+\begin{definition}
+Soit $f$ une fonction $T$-périodique. On pose $\int_T f(t)dt = \int_a^b f(t)dt$ avec $b - a = T$
+\end{definition}
+\begin{proposition}
+    Soit $f$ une fonction $T$-périodique, alors $\int_a^b f(t)dt  $ ne dépend pas du choix de a et b. \\
+\begin{proof}
+    On prend deux intervalles $[a,b]$ et $[c,d]$ tels que $b-a = d-c = T.$ 
+    On suppose que $[a,b] \cap [c,d] \neq \emptyset.$
+    Nous allons montrer que $\int_a^b f(t)dt = \int_c^d f(t)dt.$ \\
+    Si $a = c$, cela est évident. Supposons donc que $a < c$, on a alors 
+    \begin{align*}
+        \int_a^b f(t)dt 
+        &= \int_a^cf(t)dt + \int_c^b f(t)dt \text{ (en posant }x = t + T\text{)} \\
+        &= \int_{a+T}^{c+T} f(x+T)dx + \int_c^b f(t)dt \\
+        &= \int_b^d f(t)dt + \int_c^b f(t)dt \\
+        &= \int_c^d f(t)dt
+        \end{align*}
+
+Si $a > c,$ la méthode est analogue.
+
+Si maintenant $[a,b] \cap [c,d] = \emptyset,$ on pose $k = \lfloor \frac{c-a}{T} \rfloor, k \in \mathbb{Z}.$ On a donc :
+\begin{align*}
+    \int_a^b f(t)dt &= \int_{a+kT}^{b+kT} f(t)dt \\
+    &= \int_c^d f(t)dt
+\end{align*}
+car par construction, $[a+kt,b+kt] \cap [c,d] \neq \emptyset.$
+
+\end{proof}
+    
+\end{proposition}
+
+\begin{remarque}
+    Dans le reste de ce papier, nous utiliserons $\int_T f(t)dt = \int_{-T/2}^{T/2} f(t)dt$ à part si spécifié autrement.
+\end{remarque}
+
+\begin{definition}
+    On définit un polynôme trigonométrique comme étant une série de sinus et de cosinus de période T. \\
+    On pose $P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right)$ avec $a_n,b_n \in \mathbb{R}$ $  \forall n.$
+\end{definition}
+
+\begin{remarque}
+Remarquons que si $P$ est une somme finie de fonctions trigonométriques, alors $P \in C^{\infty}(\mathbb{R},\mathbb{R}).$ Cela n'est pas forcémement le cas si c'est une somme infinie mais nous verons cela plus tard.
+\end{remarque}
+
+\begin{example}
+On a $P(x) = 7\cos(x) + 5\cos(2x) + 6 \sin(2x)$ qui est trigonométrique. \\
+On remarque que $7 \cos(x) = \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix}, 5\cos(2x) = \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix}, 6\sin(2x) = -i(3e^{2ix} - 3e^{-2ix}) $.\\
+\begin{align*} 
+\implies P(x) &= \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix} + \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix} -i(3e^{2ix} - 3e^{-2ix})
+\\ &= \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix} + \left(\frac{5}{2} - 3i\right)e^{2ix} + \left(\frac{5}{2} + 3i\right)e^{-2ix}.
+\end{align*}
+
+On remarque qu'il existe des consantes dans $\mathbb{C}$ tels que le polynôme trigonométrique $P(x)$ s'écrive sous forme d'addition d'exponentielles complexes.
+Serait-ce un hazard ou une propriété vraie pour toute fonction $P$ ?
+    
+\end{example}
+
+
+
+\begin{proposition}
+\label{proposition 2}    
+Si $P$ est un polynôme trigonométrique, alors $\exists$ $c_n$$\in \mathbb{C}, n \in \mathbb{Z}$ tel que $P(x) = \sum_{n = 0}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}$
+\end{proposition}
+
+\begin{proof}
+    Comme $P$ est un polynôme trigonométrique, $P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) = a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right).$ \\
+    Par la formule d'Euler, on sait que $e^{ix} = \cos(x) + i\sin(x).$
+    On a donc $\sin(x) = \frac{e^{ix}-e^{-ix}}{2}$ et $\cos(x)=\frac{e^{ix}+e^{-ix}}{2}.$\\
+    On en déduit que
+    \begin{align*}
+      P(x) &= a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) - b_n \sin\left(n \frac{2\pi}{T}x\right) \\
+      &= a_0 + \sum_{n= 1}^{\infty} \frac{a_n}{2}\left(e^{2\pi i \frac{n}{T}x}+e^{-2\pi i \frac{n}{T}x}\right) - i\frac{b_n}{2} \left(e^{2\pi i \frac{n}{T}x}-e^{-2\pi i \frac{n}{T}x}\right) \\
+      &= a_0 + \sum_{n=1}^{\infty} \frac{a_n - ib_n}{2}e^{2\pi i \frac{n}{T}x} + \sum_{n=-\infty}^{-1} \frac{a_{-n} + ib_{-n}}{2}e^{2\pi i \frac{n}{T}x} \\
+      &= \sum_{n = -\infty}^{\infty} c_n e^{2\pi i \frac{n}{T}x}
+    \end{align*}
+    Avec $c_n = \left \{
+        \begin{array}{lll}
+         a_0 &   \mbox{si } n = 0 \\
+    \frac{a_n-ib_n}{2}  
+         & \mbox{si } n>0 \\
+    \frac{a_{-n}+ib_{-n}}{2} & \mbox{si } n < 0.
+    \end{array}
+    \right.$             
+\end{proof}
+
+\begin{corrolaire}
+    Si $P$ est une fonction qui peut s'écrire de la forme $P(x) = \sum_{n=-\infty}^{\infty} c_n e^{2 \pi i \frac{n}{T}x},$ alors :
+    $$
+    P(x) = a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(2 \pi \frac{n}{T}\right) + b_n \sin\left(2 \pi \frac{n}{T}\right)  
+    $$
+    Avec $a_0 = c_0$, $a_n = c_n + c_{-n}$ et $b_n = i(c_n - c_{-n})$ avec $n >$ 0. 
+
+\begin{proof}
+    Par le théorème 2, on sait que $c_n = a_n - ib_n$ et $c_{-n} = a_n + ib_n$ $\forall n > 0$. On peut facilement vérifier que $a_n = c_n + c_{-n}$ et $b_n = i(c_n-c{-n})$ est la seule solution.
+\end{proof}
+\end{corrolaire}
+
+\begin{proposition}
+    Soit $P $ un polynôme trigonométrique de période T. Alors on a :
+    $$P(x) = \sum_{n=\infty}^{\infty} c_n e^{i \frac{2\pi nx}{T}}$$ 
+avec $c_n = \frac{1}{T} \int_T P(t) e^{-i \frac{2\pi nt}{T}}dt.$
+
+\begin{proof}
+Par la proposition 2, on sait qu'il existe des constantes $c_n$ $, n \in \mathbb{Z}$ telles que $P(x) = \sum_{n = -\infty}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}.$ On calcule que :
+\begin{align*}
+\int_T P(t)e^{-2\pi i \frac{n}{T}t}dt &= \int_T \sum_{k = -\infty}^{\infty} c_k e^{2 \pi i \frac{k}{T}t} e^{-2 \pi i \frac{n}{T} t} dt \\
+&= \sum_{k = -\infty}^{\infty} c_k \int_T e^{2 \pi i \frac{k-n}{T}t} dt.
+\end{align*}
+Si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi i (k-n)} e^{2\pi i \frac{k-n}{T}t} \right]_{-T/2}^{T/2}  =  \frac{T}{2 \pi i (k-n)}\left(e^{ \pi i (k-n)} - e^{\pi i (n-k)}\right) = 0.$ Si $k = n,$ alors l'intégale vaut $ \int_{-T/2}^{T/2} dt = T. $\\
+
+\end{proof}
+\end{proposition}
+    
+\end{document}
