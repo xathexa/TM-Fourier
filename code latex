@@ -18,34 +18,75 @@
 
 \newtheorem{proposition}{Proposition}
 
+\newtheorem{theoreme}{Théorème}
+
 \newtheorem{remarque}{Remarque}
 
 \newtheorem{example}{Exemple}
 
 \newtheorem{corrolaire}{Corrolaire}
 
+\newtheorem{rappel}{Rappel}
+
+\usepackage[T1]{fontenc} 
+
 \title{TM analyse de Fourier}
 
 \author{Xavier Cherpit}
 
-\date{October 2023}
+\date{Octobre 2023}
 
 \begin{document}
 
-\maketitle
-\section{Table des matières}
+\begin{titlepage}
 
+    \begin{center}
+    \vspace{3cm}
+        \Large
+        \text{Gymnase de Renens}
+
+        \vspace{1.5 cm}
+        \text{Travail de maturité 2024}
+        
+        \vspace{7cm}
+        \Huge 
+        \textbf{Analyse de Fourier}
+
+    \end{center}
+    
+    \large
+    \vspace{7cm}
+    \text{Répondant:}
+    \hfill
+    \text{Elève:} \\
+    Christophe Hinvi
+    \hfill
+    Cherpit Xavier
+
+    \vspace{1cm}
+    \text{Renens, 7 novembre 2024}
+\end{titlepage}
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
 
 \section{Introduction}
-L'analyse de Fourier a été élaboré au début du XIX siècle par Joseph Fourier (1768-1830). 
+L'analyse de Fourier a été élaboré au début du XIX siècle par Joseph Fourier (1768-1830) pour étudier les corps chauds. 
+
+\pagebreak
+
 \section{Séries de Fourier}
+\subsection{Polynômes trigonométriques}
 \begin{definition} 
-Une fonction $f$ est dite périodique ou $T$-périodique si $\exists T > 0$ minimal tel que  $f(x+T) = f(x)$ $\forall x \in \mathbb{R}$
+Une fonction $f$ est dite \textbf{périodique} ou $\mathbf{T}$\textbf{-périodique} si $\exists T > 0$ minimal tel que  $f(x+T) = f(x)$ $\forall x \in \mathbb{R}$
 
 \end{definition}
 
 \begin{example}
-    On a les fonctions $\sin\left(2\pi\frac{n}{T}\right)$ et $\cos\left(2\pi\frac{n}{T}\right)$ avec $n \in \mathbb{R}$ de périodes $\frac{T}{n}$ (et donc aussi de T)
+    On a les fonctions $\sin\left(n\frac{2\pi}{T}x\right)$ et $\cos\left(n\frac{2\pi}{T}x\right)$ avec $n \in \mathbb{N}$ de périodes $\frac{T}{n}$ (et donc aussi de T)
 \end{example}
 
 \begin{definition}
@@ -58,67 +99,86 @@ Soit $f$ une fonction $T$-périodique. On pose $\int_T f(t)dt = \int_a^b f(t)dt$
     On suppose que $[a,b] \cap [c,d] \neq \emptyset.$
     Nous allons montrer que $\int_a^b f(t)dt = \int_c^d f(t)dt.$ \\
     Si $a = c$, cela est évident. Supposons donc que $a < c$, on a alors 
-    \begin{align*}
-        \int_a^b f(t)dt 
-        &= \int_a^cf(t)dt + \int_c^b f(t)dt \text{ (en posant }x = t + T\text{)} \\
-        &= \int_{a+T}^{c+T} f(x+T)dx + \int_c^b f(t)dt \\
-        &= \int_b^d f(t)dt + \int_c^b f(t)dt \\
-        &= \int_c^d f(t)dt
-        \end{align*}
+\begin{align*}
+    \int_a^b f(t)dt 
+    &= \int_a^cf(t)dt + \int_c^b f(t)dt  \\
+    &= \int_b^d f(t)dt + \int_c^b f(t)dt \text{ (on pose }x = t + T\text{ dans la première intégrale)} \\
+    &= \int_{a+T}^{c+T} f(x-T)dx + \int_c^b f(t)dt\\
+    &= \int_b^d f(x)dx + \int_c^b f(t)dt \\
+    &= \int_c^d f(t)dt \text{ (où la quatrième égalité vient de la périodicité de }f\text{)}
+\end{align*}
 
 Si $a > c,$ la méthode est analogue.
 
 Si maintenant $[a,b] \cap [c,d] = \emptyset,$ on pose $k = \lfloor \frac{c-a}{T} \rfloor, k \in \mathbb{Z}.$ On a donc :
 \begin{align*}
-    \int_a^b f(t)dt &= \int_{a+kT}^{b+kT} f(t)dt \\
+    \int_a^b f(t)dt &= \int_{a+kT}^{b+kT} f(t)dt \text{ (par periodicité de } f \text{)}\\
     &= \int_c^d f(t)dt
 \end{align*}
-car par construction, $[a+kt,b+kt] \cap [c,d] \neq \emptyset.$
+car par construction, $[a+kT,b+kT] \cap [c,d] \neq \emptyset.$
 
 \end{proof}
     
 \end{proposition}
 
 \begin{remarque}
-    Dans le reste de ce papier, nous utiliserons $\int_T f(t)dt = \int_{-T/2}^{T/2} f(t)dt$ à part si spécifié autrement.
+    Dans le reste de ce travail, nous utiliserons $\int_T f(t)dt = \int_{-T/2}^{T/2} f(t)dt$ à part si spécifié autrement.
 \end{remarque}
 
+\begin{theoreme}(Formule d'Euler)
+On a $e^{ix} = cos(x) + isin(x) $ $ \forall x\in \mathbb{R}.$\\
+Ce théorème peut se montrer grâce aux séries de Taylor de l'exponentielle ainsi que celles du sinus et du cosinus.
+\end{theoreme}
+
 \begin{definition}
-    On définit un polynôme trigonométrique comme étant une série de sinus et de cosinus de période T. \\
-    On pose $P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right)$ avec $a_n,b_n \in \mathbb{R}$ $  \forall n.$
+    Soit $f$ une fonction définie de $\mathbb{R}$ dans $\mathbb{R}$, alors on dit que $f$ est \textbf{paire} (respectivement \textbf{impaire}) si $f(x) = f(-x) \text{ }\forall x \in \mathbb{R}$ (respectivement $f(x) = -f(-x)\text{ } \forall x \in \mathbb{R}).$
+\end{definition}
+
+\begin{corrolaire}(Formes exponentielles du sinus et du cosinus)
+$\forall x \in \mathbb{R}, $ on a $cos(x) = \frac{e^{ix}+e^{-ix}}{2} $ et $sin(x) = \frac{e^{ix}-e^{-ix}}{2i}.$
+\begin{proof}
+    Par les formules d'Euler, on a $e^{ix} = cos(x) + isin(x)$ et $e^{-ix} = cos(-x) + isin(-x).$ Comme le sinus est une fonction impaire et le cosinus une fonction paire, on a $e^{-ix} = cos(x) - isin(x).$
+    Cela implique que $e^{ix} + e^{-ix} = 2cos(x)$ et $e^{ix} - e^{-ix} = 2isin(x)$ d'où le résultat.
+\end{proof}
+\end{corrolaire}
+\begin{definition}
+    On définit un polynôme trigonométrique comme étant une série de sinus et de cosinus de fréquence entières de $\frac{1}{T}$. \\
+    On pose 
+    $$P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) \text{ avec }a_n,b_n \in \mathbb{R} \text{, } \forall n \in \mathbb{N}.$$
+\end{definition}
+
+\begin{definition}
+    Soit $I  \subset \mathbb{R}$ un intervalle alors on note $C^\infty(I,\mathbb{R})$ où plus simplement $C^\infty(I)$ \textbf{l'ensemble} des fonctions $f : I \rightarrow \mathbb{R}$ tels que $f$ soit infiniment dérivable. 
 \end{definition}
 
 \begin{remarque}
-Remarquons que si $P$ est une somme finie de fonctions trigonométriques, alors $P \in C^{\infty}(\mathbb{R},\mathbb{R}).$ Cela n'est pas forcémement le cas si c'est une somme infinie mais nous verons cela plus tard.
+Remarquons que si $P$ est une somme finie de fonctions trigonométriques, alors $P \in C^{\infty}(\mathbb{R},\mathbb{R}).$ Cela n'est pas forcémement le cas si c'est une série infinie mais nous verons cela plus tard.
 \end{remarque}
 
 \begin{example}
 On a $P(x) = 7\cos(x) + 5\cos(2x) + 6 \sin(2x)$ qui est trigonométrique. \\
 On remarque que $7 \cos(x) = \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix}, 5\cos(2x) = \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix}, 6\sin(2x) = -i(3e^{2ix} - 3e^{-2ix}) $.\\
 \begin{align*} 
-\implies P(x) &= \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix} + \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix} -i(3e^{2ix} - 3e^{-2ix})
+\text{Cela implique que } P(x) &= \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix} + \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix} -i\left(3e^{2ix} - 3e^{-2ix}\right)
 \\ &= \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix} + \left(\frac{5}{2} - 3i\right)e^{2ix} + \left(\frac{5}{2} + 3i\right)e^{-2ix}.
 \end{align*}
 
 On remarque qu'il existe des consantes dans $\mathbb{C}$ tels que le polynôme trigonométrique $P(x)$ s'écrive sous forme d'addition d'exponentielles complexes.
-Serait-ce un hazard ou une propriété vraie pour toute fonction $P$ ?
+Serait-ce un hazard ou une propriété vraie pour tout polynôme trigonométrique $P$ ?
     
 \end{example}
 
-
-
 \begin{proposition}
 \label{proposition 2}    
-Si $P$ est un polynôme trigonométrique, alors $\exists$ $c_n$$\in \mathbb{C}, n \in \mathbb{Z}$ tel que $P(x) = \sum_{n = 0}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}$
+Si $P$ est un polynôme trigonométrique, alors $\exists$ $c_n$$\in \mathbb{C}, n \in \mathbb{Z}$ tel que 
+$$P(x) = \sum_{n = -\infty}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}$$
 \end{proposition}
 
 \begin{proof}
     Comme $P$ est un polynôme trigonométrique, $P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) = a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right).$ \\
-    Par la formule d'Euler, on sait que $e^{ix} = \cos(x) + i\sin(x).$
-    On a donc $\sin(x) = \frac{e^{ix}-e^{-ix}}{2}$ et $\cos(x)=\frac{e^{ix}+e^{-ix}}{2}.$\\
-    On en déduit que
+    Par les formes exponentielles du sinus et du cosinus, on en déduit que
     \begin{align*}
-      P(x) &= a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) - b_n \sin\left(n \frac{2\pi}{T}x\right) \\
+      P(x) &= a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) \\
       &= a_0 + \sum_{n= 1}^{\infty} \frac{a_n}{2}\left(e^{2\pi i \frac{n}{T}x}+e^{-2\pi i \frac{n}{T}x}\right) - i\frac{b_n}{2} \left(e^{2\pi i \frac{n}{T}x}-e^{-2\pi i \frac{n}{T}x}\right) \\
       &= a_0 + \sum_{n=1}^{\infty} \frac{a_n - ib_n}{2}e^{2\pi i \frac{n}{T}x} + \sum_{n=-\infty}^{-1} \frac{a_{-n} + ib_{-n}}{2}e^{2\pi i \frac{n}{T}x} \\
       &= \sum_{n = -\infty}^{\infty} c_n e^{2\pi i \frac{n}{T}x}
@@ -141,24 +201,51 @@ Si $P$ est un polynôme trigonométrique, alors $\exists$ $c_n$$\in \mathbb{C}, 
     Avec $a_0 = c_0$, $a_n = c_n + c_{-n}$ et $b_n = i(c_n - c_{-n})$ avec $n >$ 0. 
 
 \begin{proof}
-    Par le théorème 2, on sait que $c_n = a_n - ib_n$ et $c_{-n} = a_n + ib_n$ $\forall n > 0$. On peut facilement vérifier que $a_n = c_n + c_{-n}$ et $b_n = i(c_n-c{-n})$ est la seule solution.
+    Par le théorème 2, on sait que $c_n = a_n - ib_n$,  $c_{-n} = a_n + ib_n$ et $c_0 = a_0$ $\forall n > 0$. On peut facilement vérifier que $a_n = c_n + c_{-n}$ et $b_n = i(c_n-c_{-n})$ est la seule solution.
 \end{proof}
 \end{corrolaire}
 
 \begin{proposition}
     Soit $P $ un polynôme trigonométrique de période T. Alors on a :
-    $$P(x) = \sum_{n=\infty}^{\infty} c_n e^{i \frac{2\pi nx}{T}}$$ 
+    $$P(x) = \sum_{n=-\infty}^{\infty} c_n e^{i \frac{2\pi nx}{T}}$$ 
 avec $c_n = \frac{1}{T} \int_T P(t) e^{-i \frac{2\pi nt}{T}}dt.$
 
 \begin{proof}
 Par la proposition 2, on sait qu'il existe des constantes $c_n$ $, n \in \mathbb{Z}$ telles que $P(x) = \sum_{n = -\infty}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}.$ On calcule que :
 \begin{align*}
 \int_T P(t)e^{-2\pi i \frac{n}{T}t}dt &= \int_T \sum_{k = -\infty}^{\infty} c_k e^{2 \pi i \frac{k}{T}t} e^{-2 \pi i \frac{n}{T} t} dt \\
-&= \sum_{k = -\infty}^{\infty} c_k \int_T e^{2 \pi i \frac{k-n}{T}t} dt.
+&= \sum_{k = -\infty}^{\infty} c_k \int_T e^{2 \pi i \frac{k-n}{T}t} dt.\\
+&= c_n \cdot T
 \end{align*}
-Si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi i (k-n)} e^{2\pi i \frac{k-n}{T}t} \right]_{-T/2}^{T/2}  =  \frac{T}{2 \pi i (k-n)}\left(e^{ \pi i (k-n)} - e^{\pi i (n-k)}\right) = 0.$ Si $k = n,$ alors l'intégale vaut $ \int_{-T/2}^{T/2} dt = T. $\\
-
+Puisque, si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi i (k-n)} e^{2\pi i \frac{k-n}{T}t} \right]_{-T/2}^{T/2}  =  \frac{T}{2 \pi i (k-n)}\left(e^{ \pi i (k-n)} - e^{\pi i (n-k)}\right) = 0.$ Si $k = n,$ alors l'intégale vaut $ \int_{-T/2}^{T/2} dt = T. $\\
+\textit{Remarque} : l'intervertion série-intégrale peut se faire puisque la série converge uniformément.
 \end{proof}
+
 \end{proposition}
-    
+
+\begin{corrolaire}
+    Soit $P$ un polynôme trigonométrique de période T. Alors on a 
+    $$P(x) = \sum_{n = 0}^\infty a_n cos\left(n \frac{2\pi}{T}x\right) + b_n sin\left(n \frac{2\pi}{T}x\right)$$
+    Avec $a_n = \frac{2}{T}\int_T P(t)cos\left(n\frac{2\pi}{T}t\right)dt $ et $b_n = \frac{2}{T} \int_T P(t)sin\left(n\frac{2\pi}{T}t\right)dt$.
+\begin{proof}
+    Par le théorème 3, on sait que $P(x) = \sum_{n = -\infty}^\infty c_n e^{in\frac{2\pi}{T}t}$ avec $c_n = \frac{1}{T}\int_TP(t)e^{-n\frac{2\pi}{T}t}dt.$ 
+    On sait aussi que $\forall n \in \mathbb{R}, a_n = c_n + c_{-n}$ et $b_n = i(c_n-c_{-n})$ par le corrolaire 2.
+    On a donc :
+    \begin{align*}
+        a_n &= c_n - c_{-n} \\
+        &= \frac{1}{T}\int_T P(t)\left(e^{-in\frac{2\pi}{T}t}+e^{in\frac{2\pi}{T}t}\right)dt \\
+        &= \frac{2}{T} \int_T P(t)cos\left( n \frac{2\pi}{T}t\right)dt
+    \end{align*}
+    L'argument pour $b_n$ est similaire.
+\end{proof}
+\end{corrolaire}
+\subsection{Fonctions périodiques}
+Jusqu'à présent, nous avions travaillé sur des polynômes trigonométriques. Nous voulons désormais travailler sur des fonctions périodiques quelconques.
+\begin{definition}
+    Soit $I = [a,b]$ un intervalle de $\mathbb{R}$, et $f : I \rightarrow \mathbb{R}$ avec $f(a) = f(b).$ Alors on appele \textbf{coefficients de Fourier de} $\mathbf{f}$ les nombres $a_n = \frac{2}{T}\int_T f(t)cos\left(n\frac{2\pi}{T}t\right)dt$ $\forall n \in \mathbb{N^*}$, $a_0 = \frac{1}{T}\int_t f(t)dt$ et $b_n = \frac{2}{T}sin\left( n \frac{2\pi}{T}t\right)dt $ $\forall n \in \mathbb{N^*}$ et \textbf{série de Fourier} la fonction $S(x) = \sum_{n = 0}^\infty a_n cos\left( n \frac{2\pi}{T}x\right) + b_n sin\left(n \frac{2\pi}{T}x \right).$
+\end{definition}
+\begin{remarque}
+    Certains auteurs utilisent $a_0 = \frac{2}{T} \int_T f(t)dt$ pour garder le facteur 2 afin d'utiliser $a_n = \frac{2}{T}\int_T f(t)cos\left(n \frac{2\pi}{T}t\right)dt $ $\forall n \in \mathbb{N}.$
+\end{remarque}
+On pourait se dire que quelque soit la fonction $f(x)$, la série $S(x)$ converge vers $f(x)$ sur l'intervalle $[a,b]$ mais ce n'est pas forcément le cas. Mais nous verrons cela plus tard.
 \end{document}
