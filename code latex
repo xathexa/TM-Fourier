@@ -281,7 +281,7 @@ Tous les résultats vus jusqu'à présent sont généralisables pour des fonctio
 On pourait se dire que quelque soit la fonction $f(x)$, la série $F_N(x)$ converge vers $f(x)$ sur l'intervalle $[a,b]$ mais ce n'est pas forcément le cas.
 
 \begin{definition}
-    Une fonction $f:\mathbb{R}\rightarrow \mathbb{R}$ est dite \textbf{régulière par moreceaux} si pour tout $a,b \in \mathbb{R},$ $ a<b.$ Il existe une partition :
+    Une fonction $f:\mathbb{R}\rightarrow \mathbb{R}$ est dite \textbf{régulière par morceaux} si pour tout $a,b \in \mathbb{R},$ $ a<b.$ Il existe une partition :
     $$a = a_0 < a_1 < ... < a_n = b$$
     telle que 
     $$f \in C^1(]a_i, a_{i+1}[),\text{ } \forall 0\leq i \leq n-1, \text{ et } \exists M \in \mathbb{R} \text{ tel que } \lvert f'(x)\lvert \leq M, \forall x \in ]a_i,a_{i+1}[, \text{ } \forall 0\leq i \leq n-1. $$
