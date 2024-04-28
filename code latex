@@ -50,12 +50,18 @@
         
         \vspace{7cm}
         \Huge 
-        \textbf{}
+        \textbf{Comment résoudre des équations à dérivées partielles?}
 
+    \end{center}
+
+    \begin{center}
+        \vspace{0cm}
+        \Large
+        \text{Dérivation et application de l'analyse de Fourier}
     \end{center}
     
     \large
-    \vspace{7cm}
+    \vspace{5cm}
     \text{Répondant:}
     \hfill
     \text{Elève:} \\
@@ -74,12 +80,14 @@
 \pagebreak
 
 \section{Introduction}
-L'analyse de Fourier a été élaboré au début du XIX siècle par Joseph Fourier\footnote{Joseph Fourier (1768-1830): analyste français.}  dans le but d'étudier les corps chauds. Pour cela, il a dû voir d'un autre oeil la manière de penser aux fonctions trigonométriques. Toute son oeuvre se base sur le simple fait que toute fonction périodique peut également s'écrire comme série de sinus et de cosinus de fréquences entière de la fonction de base.  
+L'analyse de Fourier a été élaboré au début du XIX siècle par Joseph Fourier\footnote{Joseph Fourier (1768-1830): analyste français.}  dans le but d'étudier les corps chauds. Pour cela, il a dû voir d'un autre oeil la manière de penser aux fonctions trigonométriques. Toute son oeuvre se base sur le simple fait que toute fonction périodique peut également s'écrire comme série de sinus et de cosinus de fréquences entière de la fonction de base. \par
+L'objectif de ce TM sera de dériver en grande partie cette analyse (série et transformée de Fourier) des fonctions périodiques afin de développer une méthode étant capable de résoudre des équations à dérivées partielles.
 
 \pagebreak
 
 \section{Séries de Fourier}
-\subsection{Polynômes trigonométriques}
+\subsection{Préliminaires}
+Avant de commencer de parler des séries de Fourier, nous allons faire un rappel des connaisances réquises pour suivre ce travail.
 \begin{definition} 
 Une fonction $f$ est dite \textbf{périodique} ou $\mathbf{T}$\textbf{-périodique} si $\exists T > 0$ minimal tel que  $f(x+T) = f(x)$ $\forall x \in \mathbb{R}$
 
@@ -141,11 +149,6 @@ $\forall x \in \mathbb{R}, $ on a $cos(x) = \frac{e^{ix}+e^{-ix}}{2} $ et $sin(x
     Cela implique que $e^{ix} + e^{-ix} = 2cos(x)$ et $e^{ix} - e^{-ix} = 2isin(x)$ d'où le résultat.
 \end{proof}
 \end{corrolaire}
-\begin{definition}
-    On définit un polynôme trigonométrique comme étant une série de sinus et de cosinus de fréquence entières de $\frac{1}{T}$. \\
-    On pose 
-    $$P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) \text{ avec }a_n,b_n \in \mathbb{R} \text{, } \forall n \in \mathbb{N}.$$
-\end{definition}
 
 \begin{definition}
     Soit $I  \subset \mathbb{R}$ un intervalle alors on note $f \in C^n(I,\mathbb{R})$ où plus simplement $ f \in C^n(I)$ si $f : I \rightarrow \mathbb{R}$ admet une \textbf{$k$-ième dérivée} qui soit \textbf{continue}.\\
@@ -154,7 +157,16 @@ $\forall x \in \mathbb{R}, $ on a $cos(x) = \frac{e^{ix}+e^{-ix}}{2} $ et $sin(x
 \begin{remarque}
     Une fonction $f\in C^k(I)$ est aussi appelé une fonction \textbf{de classe $C^k(I)$}
 \end{remarque}
-
+\subsection{Polynômes trigonométriques}
+Ces préliminaires étant terminés, nous definissons maintenant ce qu'est un polynôme trigonométrique et quelques propriétés qu'ils ont.
+\begin{definition}
+    On définit un polynôme trigonométrique comme étant une série de sinus et de cosinus de fréquence entières de $\frac{1}{T}$. \\
+    On pose 
+    \begin{align*}
+    P(x) &= \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right)\\
+    &= a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) \text{ avec }a_n,b_n \in \mathbb{R} \text{, } \forall n \in \mathbb{N}.
+    \end{align*}
+\end{definition}
 \begin{remarque}
 Remarquons que si $P$ est une somme finie de fonctions trigonométriques, alors $P \in C^{\infty}(\mathbb{R},\mathbb{R}).$ Cela n'est pas forcémement le cas si c'est une série infinie mais nous verons cela plus tard.
 \end{remarque}
