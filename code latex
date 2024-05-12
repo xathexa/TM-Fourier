@@ -55,7 +55,6 @@
     \end{center}
 
     \begin{center}
-        \vspace{0cm}
         \Large
         \text{Dérivation et application de l'analyse de Fourier}
     \end{center}
@@ -64,8 +63,8 @@
     \vspace{5cm}
     \text{Répondant:}
     \hfill
-    \text{Elève:} \\
-    Christophe Hinvi
+    \text{Elève:        } \\
+    Hinvi Christophe
     \hfill
     Cherpit Xavier
 
@@ -134,7 +133,7 @@ car par construction, $[a+kT,b+kT] \cap [c,d] \neq \emptyset.$
 \end{remarque}
 
 \begin{theoreme}(Formule d'Euler)
-On a $e^{ix} = cos(x) + isin(x) $ $ \forall x\in \mathbb{R}.$\\
+On a $e^{ix} = \cos(x) + i\sin(x) $ $ \forall x\in \mathbb{R}.$\\
 Ce théorème peut se montrer grâce aux séries de Taylor de l'exponentielle ainsi que celles du sinus et du cosinus.
 \end{theoreme}
 
@@ -143,10 +142,10 @@ Ce théorème peut se montrer grâce aux séries de Taylor de l'exponentielle ai
 \end{definition}
 
 \begin{corrolaire}(Formes exponentielles du sinus et du cosinus)
-$\forall x \in \mathbb{R}, $ on a $cos(x) = \frac{e^{ix}+e^{-ix}}{2} $ et $sin(x) = \frac{e^{ix}-e^{-ix}}{2i}.$
+$\forall x \in \mathbb{R}, $ on a $\cos(x) = \frac{e^{ix}+e^{-ix}}{2} $ et $\sin(x) = \frac{e^{ix}-e^{-ix}}{2i}.$
 \begin{proof}
-    Par les formules d'Euler, on a $e^{ix} = cos(x) + isin(x)$ et $e^{-ix} = cos(-x) + isin(-x).$ Comme le sinus est une fonction impaire et le cosinus une fonction paire, on a $e^{-ix} = cos(x) - isin(x).$
-    Cela implique que $e^{ix} + e^{-ix} = 2cos(x)$ et $e^{ix} - e^{-ix} = 2isin(x)$ d'où le résultat.
+    Par les formules d'Euler, on a $e^{ix} = \cos(x) + i\sin(x)$ et $e^{-ix} = \cos(-x) + i\sin(-x).$ Comme le sinus est une fonction impaire et le cosinus une fonction paire, on a $e^{-ix} = \cos(x) - i\sin(x).$
+    Cela implique que $e^{ix} + e^{-ix} = 2\cos(x)$ et $e^{ix} - e^{-ix} = 2i\sin(x)$ d'où le résultat.
 \end{proof}
 \end{corrolaire}
 
@@ -242,8 +241,8 @@ Puisque, si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi 
 
 \begin{corrolaire}
     Soit $P$ un polynôme trigonométrique de période T. Alors on a 
-    $$P(x) = \sum_{n = 0}^\infty a_n cos\left(n \frac{2\pi}{T}x\right) + b_n sin\left(n \frac{2\pi}{T}x\right)$$
-    Avec $a_n = \frac{2}{T}\int_T P(t)cos\left(n\frac{2\pi}{T}t\right)dt $ et $b_n = \frac{2}{T} \int_T P(t)sin\left(n\frac{2\pi}{T}t\right)dt$.
+    $$P(x) = \sum_{n = 0}^\infty a_n \cos\left(n \frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right)$$
+    Avec $a_n = \frac{2}{T}\int_T P(t)\cos\left(n\frac{2\pi}{T}t\right)dt $ et $b_n = \frac{2}{T} \int_T P(t)\sin\left(n\frac{2\pi}{T}t\right)dt$.
 \begin{proof}
     Par le théorème 3, on sait que $P(x) = \sum_{n = -\infty}^\infty c_n e^{in\frac{2\pi}{T}t}$ avec $c_n = \frac{1}{T}\int_TP(t)e^{-n\frac{2\pi}{T}t}dt.$ 
     On sait aussi que $\forall n \in \mathbb{N^*}, a_n = c_n + c_{-n}$ et $b_n = i(c_n-c_{-n})$ par le corrolaire 2.
@@ -261,11 +260,11 @@ Puisque, si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi 
 Jusqu'à présent, nous avions travaillé sur des polynômes trigonométriques. Nous voulons désormais travailler sur des fonctions périodiques quelconques.\\
 Tous les résultats vus jusqu'à présent sont généralisables pour des fonctions trigonométriques quelconques. 
 \begin{definition}
-    Soit  $f : \mathbb{R} \rightarrow \mathbb{R}$ une fonction $T-$périodique Alors on appele \textbf{coefficients trigonométriques de Fourier }(ou plus simplement \textbf{coefficients de Fourier}) de $f$ les nombres $a_n = \frac{2}{T}\int_T f(t)cos\left(n\frac{2\pi}{T}t\right)dt$ $\forall n \in \mathbb{N^*}$, $a_0 = \frac{1}{T}\int_t f(t)dt$ et $b_n = \frac{2}{T}sin\left( n \frac{2\pi}{T}t\right)dt $ $\forall n \in \mathbb{N^*}$ et \textbf{série de Fourier partielle d'ordre N} la suite de fonctions $\left( F_Nf\right)_{n\geq0}$ définie par: 
-    $$F_Nf(x) = a_0 + \sum_{n = 1}^N a_n cos\left( n \frac{2\pi}{T}x\right) + b_n sin\left(n \frac{2\pi}{T}x \right).$$
+    Soit  $f : \mathbb{R} \rightarrow \mathbb{R}$ une fonction $T-$périodique Alors on appele \textbf{coefficients trigonométriques de Fourier }(ou plus simplement \textbf{coefficients de Fourier}) de $f$ les nombres $a_n = \frac{2}{T}\int_T f(t)\cos\left(n\frac{2\pi}{T}t\right)dt$ $\forall n \in \mathbb{N^*}$, $a_0 = \frac{1}{T}\int_t f(t)dt$ et $b_n = \frac{2}{T}\sin\left( n \frac{2\pi}{T}t\right)dt $ $\forall n \in \mathbb{N^*}$ et \textbf{série de Fourier partielle d'ordre N} la suite de fonctions $\left( F_Nf\right)_{n\geq0}$ définie par: 
+    $$F_Nf(x) = a_0 + \sum_{n = 1}^N a_n \cos\left( n \frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x \right).$$
 
     Lorsque la suite $F_Nf(x)$ converge sur $\mathbb{R}$, on appelle \textbf{série de Fourier} de $f$ la fonction étant:
-    $$Ff(x) = \lim_{N\rightarrow \infty} F_Nf(x) = a_0 + \sum_{n=1}^\infty cos\left(n\frac{2\pi}{T}x\right)+sin\left(n\frac{2\pi}{T}x\right)$$
+    $$Ff(x) = \lim_{N\rightarrow \infty} F_Nf(x) = a_0 + \sum_{n=1}^\infty \cos\left(n\frac{2\pi}{T}x\right)+\sin\left(n\frac{2\pi}{T}x\right)$$
 \end{definition}
 
 \begin{definition}
@@ -275,7 +274,7 @@ Tous les résultats vus jusqu'à présent sont généralisables pour des fonctio
 \end{definition}
 
 \begin{remarque}
-    Certains auteurs utilisent $a_0 = \frac{2}{T} \int_T f(t)dt$ pour garder le facteur 2 afin d'utiliser $a_n = \frac{2}{T}\int_T f(t)cos\left(n \frac{2\pi}{T}t\right)dt $ $\forall n \in \mathbb{N}.$
+    Certains auteurs utilisent $a_0 = \frac{2}{T} \int_T f(t)dt$ pour garder le facteur 2 afin d'utiliser $a_n = \frac{2}{T}\int_T f(t)\cos\left(n \frac{2\pi}{T}t\right)dt $ $\forall n \in \mathbb{N}.$
 \end{remarque}
 
 On pourait se dire que quelque soit la fonction $f(x)$, la série $F_N(x)$ converge vers $f(x)$ sur l'intervalle $[a,b]$ mais ce n'est pas forcément le cas.
@@ -284,8 +283,27 @@ On pourait se dire que quelque soit la fonction $f(x)$, la série $F_N(x)$ conve
     Une fonction $f:\mathbb{R}\rightarrow \mathbb{R}$ est dite \textbf{régulière par morceaux} si pour tout $a,b \in \mathbb{R},$ $ a<b.$ Il existe une partition :
     $$a = a_0 < a_1 < ... < a_n = b$$
     telle que 
-    $$f \in C^1(]a_i, a_{i+1}[),\text{ } \forall 0\leq i \leq n-1, \text{ et } \exists M \in \mathbb{R} \text{ tel que } \lvert f'(x)\lvert \leq M, \forall x \in ]a_i,a_{i+1}[, \text{ } \forall 0\leq i \leq n-1. $$
+    $$f \in C^1(]a_i, a_{i+1}[),\text{ } \forall \text{ }0\leq i \leq n-1, \text{ et } \exists M \in \mathbb{R} \text{ tel que } \lvert f'(x)\lvert \leq M, \forall x \in ]a_i,a_{i+1}[, \text{ } \forall \text{ } 0\leq i \leq n-1. $$
 \end{definition}
+
+\begin{example}
+    Cette définition peut , nous allons donc faire un exemple.
+    Soit $f: [1,4]\rightarrow \mathbb{R} $ définie par $f(x) = \left\{
+    \begin{array}{lll}
+         x^3-3x+3 & \mbox{si } 1\leq x \leq 2 \\  
+        -x^2+2x+8 & \mbox{si } 2 < x \leq 3 \\
+        2x+3 & \mbox{si } 3 < x \leq 4.
+    \end{array}
+    \right.$ (cf. Fig. 1). \\
+    On affirme que $f$ est régulière par morceaux. En effet, on peut partitionner $[1,4]$ comme $[1,2] \cup [2,3] \cup [3,4].$ On a ici : $a_0 = 1, a_1 = 2, a_2= 3, a_3 = 4$ et $f$ est de classe $C^1$ et est bornée sur $]a_i, a_{i+1}[, $ $i=0,1,2.$ 
+\end{example}
+
+\begin{figure}[th]
+    \centering
+    \includegraphics[width = \linewidth]{Fonction_régulière.png}
+    \caption{Fonction régulière par morceaux}
+    \label{Fonction régulière pm}
+\end{figure}
 
 \subsection{Théorème de Dirichlet}
 L'un des théorèmes les plus fondamentaux de l'analyse de Fourier est le théorème de Dirichlet qui relie la convergence de la série de Fourier de $f$ à $f$. Nous n'en montrerons pas la preuve mais elle se démontre grâce aux noyaux de Dirichlet qui dépassent les objectifs de ce travail.
@@ -297,7 +315,7 @@ L'un des théorèmes les plus fondamentaux de l'analyse de Fourier est le théor
     $$Ff(x_0) = f(x_0).$$ 
     Si de plus, $f$ est continue sur $\mathbb{R}$, alors $Ff(x)$ converge uniformément vers $f(x)$ i.e. $\forall \epsilon > 0, $ $\exists N \in \mathbb{N} $ tel que $\lvert F_nf(x)-f(x) \lvert \leq \epsilon.$ $ \forall x \in \mathbb{R}, \forall n \geq N. $ 
 \end{theoreme}
-Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons plus que des fonctions qui sont $2\pi-$périodiques. Mais tous les résultats énoncés sont généralisable à une quelconque période.
+Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons plus que des fonctions qui sont $2\pi-$périodiques. Mais tous les résultats énoncés sont généralisables à une quelconque période.
 \begin{proposition}
     Soit $f$ une fonction $2\pi$-périodique, régulière par morceaux. Alors $Ff$ est aussi $2\pi-$périodique et :\\
     i) Si $f$ est paire, alors $b_n = 0,$ $ \forall n \in \mathbb{N^*}.$\\
@@ -313,11 +331,11 @@ Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons
     Comme $f$ est impaire, on a $f(-x)= -f(x),$ $\forall x \in \mathbb{R}.$ Comme le cosinus est pair et le sinus impair,
     \begin{align*}
         f(-x) &= Ff(-x)\\ 
-        &= a_0 + \sum_{n=1}^\infty a_ncos\left(n(-x)\right)+b_nsin\left(n(-x)\right)\\
-        &=a_0 + \sum_{n=1}^\infty a_ncos\left(nx\right)-b_nsin\left(nx\right)\\
+        &= a_0 + \sum_{n=1}^\infty a_n\cos\left(n(-x)\right)+b_n\sin\left(n(-x)\right)\\
+        &=a_0 + \sum_{n=1}^\infty a_n\cos\left(nx\right)-b_n\sin\left(nx\right)\\
         &= -f(x).
     \end{align*}
-    On en déduit que $2a_0 + 2\sum_{n=1}^{\infty}a_ncos(nx)=f(x)+f(-x)=0$, $\forall x \in \mathbb{R},$ et donc que $a_n = 0$ $\forall n \in \mathbb{N}.$
+    On en déduit que $2a_0 + 2\sum_{n=1}^{\infty}a_n\cos(nx)=f(x)+f(-x)=0$, $\forall x \in \mathbb{R},$ et donc que $a_n = 0$ $\forall n \in \mathbb{N}.$
 \end{proof}
 
 \begin{remarque}
@@ -326,49 +344,49 @@ Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons
 
 \begin{proposition}(Différentiation terme pa terme)
     Soit $f$ une fonction $2\pi-$périodique continue,telle que $f'$ soit régulière par morceaux. Alors la dérivée de $Ff$ converge sur $\mathbb{R}$ et on peut dériver terme par terme, i.e.
-    $$f'(x)= \sum_{n=1}^{\infty}n\left(b_ncos\left(nx\right)-a_nsin\left(nx\right)\right)$$
+    $$f'(x)= \sum_{n=1}^{\infty}n\left(b_n\cos\left(nx\right)-a_n\sin\left(nx\right)\right)$$
 \end{proposition}
 \begin{proof}
     Nous montrons le théorème dans le cas où $f\in C^1(\mathbb{R}).$\\
     On a $f(x) = Ff(x),$ $\forall x \in \mathbb{R}$ et $F_N$ qui converge uniformément vers $f$ par le théorème de Dirichlet et donc $f'(x)=\frac{d}{dx}(Ff(x))$, et comme 
     \begin{align*}
-        Ff(x) &= \sum_{n=1}^{\infty}\left(a_ncos\left(nx\right)+b_nsin\left(nx\right)\right)\\
-        &=\lim_{N\rightarrow\infty} \sum_{n=1}^N \left(a_ncos\left(nx\right)+b_nsin\left(nx\right)\right),
+        Ff(x) &= \sum_{n=1}^{\infty}\left(a_n\cos\left(nx\right)+b_n\sin\left(nx\right)\right)\\
+        &=\lim_{N\rightarrow\infty} \sum_{n=1}^N \left(a_n\cos\left(nx\right)+b_n\sin\left(nx\right)\right),
     \end{align*}
     on peut ainsi permuter série avec dérivée par convergence uniforme de $f$ et parce qu'elle est de classe $C^1.$ On obtient  donc:
     \begin{align*}
         f'(x) &= (Ff)'(x)\\
-        &= \frac{d}{dx}\left( \sum_{n=1}^{\infty}\left(a_ncos\left(nx\right)+b_nsin\left(nx\right)\right) \right)\\
-        &= \sum_{n=1}^{\infty}\frac{d}{dx}\left(\left(a_ncos\left(nx\right)+b_nsin\left(nx\right)\right)\right)\\
-        &= \sum_{n=1}^{\infty}n\left(-a_nsin\left(nx\right)+b_ncos\left(nx\right)\right)\\
-        &= \sum_{n=1}^{\infty}n\left(b_ncos\left(nx\right)-a_nsin\left(nx\right)\right).
+        &= \frac{d}{dx}\left( \sum_{n=1}^{\infty}\left(a_n\cos\left(nx\right)+b_n\sin\left(nx\right)\right) \right)\\
+        &= \sum_{n=1}^{\infty}\frac{d}{dx}\left(\left(a_n\cos\left(nx\right)+b_n\sin\left(nx\right)\right)\right)\\
+        &= \sum_{n=1}^{\infty}n\left(-a_n\sin\left(nx\right)+b_n\cos\left(nx\right)\right)\\
+        &= \sum_{n=1}^{\infty}n\left(b_n\cos\left(nx\right)-a_n\sin\left(nx\right)\right).
     \end{align*}
 \end{proof}
 
 Ce dernier résultat est généralisable dans le cas où la $n$-ième dérivée de $f$ est régulière par morceaux et se montre par récurrence (que nous ne ferons pas):
 \begin{proposition}
     Soit $f$ une fonction $2\pi-$périodique, continue, avec $f^{(k)}$ régulière par morceaux, alors :
-    $$f^{(k)}(x) = \sum_{n=1}^{\infty}n^k\left(a_ncos^{(k)}\left(nx\right)+b_nsin^{(k)}\left(nx\right)\right)$$
+    $$f^{(k)}(x) = \sum_{n=1}^{\infty}n^k\left(a_n\cos^{(k)}\left(nx\right)+b_n\sin^{(k)}\left(nx\right)\right)$$
 \end{proposition}
 
 \begin{proposition}(Intégration terme à terme)
     Soit $f$ une fonction $2\pi-$périodique, continue, réguilière par morceaux. Soit $x_0 \in \mathbb{R}$ quelconque, alors $\forall x \in [x_0, x_0+2\pi[,$ on a : 
-    $$\int_{x_0}^xf(t)dt = a_0(x-x_0)+ \sum_{n=1}^{\infty}\int_{x_0}^x\left(a_ncos\left(nt\right)+sin\left(nt\right)\right)dt.$$
+    $$\int_{x_0}^xf(t)dt = a_0(x-x_0)+ \sum_{n=1}^{\infty}\int_{x_0}^x\left(a_n\cos\left(nt\right)+\sin\left(nt\right)\right)dt.$$
 \end{proposition}
 
 \begin{proof}
     Comme pour la proposition précédente, on supposera que $f$ est de classe $C^1$.\\
     On a $f(x) = Ff(x),$ $\forall x \in \mathbb{R}$ et $F_N$ qui converge uniformément vers $f$ par le théorème de Dirichlet et donc $\int_{x_0}^xf(t)dt=\int_{x_0}^xFf(t)dt$, et comme 
     \begin{align*}
-        Ff(x) &= \sum_{n=1}^{\infty}\left(a_ncos\left(nx\right)+b_nsin\left(nx\right)\right)\\
-        &=\lim_{N\rightarrow\infty} \sum_{n=1}^N \left(a_ncos\left(nx\right)+b_nsin\left(nx\right)\right),
+        Ff(x) &= \sum_{n=1}^{\infty}\left(a_n\cos\left(nx\right)+b_n\sin\left(nx\right)\right)\\
+        &=\lim_{N\rightarrow\infty} \sum_{n=1}^N \left(a_n\cos\left(nx\right)+b_n\sin\left(nx\right)\right),
     \end{align*}
     on peut permuter la série avec l'intégrale par convergence uniforme de $Ff$ et car $f$ est de classe $C^1.$ On conclut que
     \begin{align*}
         \int_{x_0}^xf(t)dt &= \int_{x_0}^xFf(t)dt\\
-        &=\int_{x_0}^xa_0 + \sum_{n=1}^{\infty}\left(a_ncos\left(nt\right)+b_nsin\left(nt\right)\right)dt\\
-        &= \int_{x_0}^xa_0dt+ \sum_{n=1}^{\infty}\int_{x_0}^x \left( a_ncos\left(nt\right)+b_nsin\left(nt\right)\right)dt\\
-        &= a_0(x-x_0)+ \sum_{n=1}^{\infty}\int_{x_0}^x\left(a_ncos\left(nt\right)+sin\left(nt\right)\right)dt.
+        &=\int_{x_0}^xa_0 + \sum_{n=1}^{\infty}\left(a_n\cos\left(nt\right)+b_n\sin\left(nt\right)\right)dt\\
+        &= \int_{x_0}^xa_0dt+ \sum_{n=1}^{\infty}\int_{x_0}^x \left( a_n\cos\left(nt\right)+b_n\sin\left(nt\right)\right)dt\\
+        &= a_0(x-x_0)+ \sum_{n=1}^{\infty}\int_{x_0}^x\left(a_n\cos\left(nt\right)+\sin\left(nt\right)\right)dt.
     \end{align*}
 \end{proof}
 
@@ -377,9 +395,9 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
 \begin{proposition}
       
     Soient $m,n \in \mathbb{N^*},$ alors on a :
-        $$ i) \int_0^{2\pi}sin(nt)sin(mt)dt = \pi \cdot \delta_{nm}$$
-        $$ii) \int_0^{2\pi}cos(nt)cos(mt)dt = \pi\cdot \delta_{mn}$$
-        $$iii) \int_0^{2\pi}sin(nt)cos(mt)dt=0,$$
+        $$ i) \int_0^{2\pi}\sin(nt)\sin(mt)dt = \pi \cdot \delta_{nm}$$
+        $$ii) \int_0^{2\pi}\cos(nt)\cos(mt)dt = \pi\cdot \delta_{mn}$$
+        $$iii) \int_0^{2\pi}\sin(nt)\cos(mt)dt=0,$$
         avec $\delta_{mn}$ étant le symbole de Kronecker qui vaut $ \delta_{mn}= \left \{
         \begin{array}{ll}
          1&   \mbox{si } n = m \\  
@@ -391,15 +409,15 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
 \begin{proof}
     Les points i) et ii) sont très similaires, on ne montre donc que le i), on a:\\
     
-      $$  \int_0^{2\pi}sin(nt)sin(mt)dt = \frac{1}{2}\int_0^{2\pi}cos((m-n)t) - cos((m+n)t)dt$$
-      Si $m=n$, alors l'intégrale devient : $\frac{1}{2}\int_0^{2\pi}1-cos(2mt)dt = \pi.$
+      $$  \int_0^{2\pi}\sin(nt)\sin(mt)dt = \frac{1}{2}\int_0^{2\pi}\cos((m-n)t) - \cos((m+n)t)dt$$
+      Si $m=n$, alors l'intégrale devient : $\frac{1}{2}\int_0^{2\pi}1-\cos(2mt)dt = \pi.$
       Autrement elle devient:
-      $$\frac{1}{2}\left[\frac{sin((m-n)t)}{m-n}- \frac{sin((m+n)t)}{m-n}\right]_0^{2\pi} = 0.$$
+      $$\frac{1}{2}\left[\frac{\sin((m-n)t)}{m-n}- \frac{\sin((m+n)t)}{m-n}\right]_0^{2\pi} = 0.$$
     Pour le point iii), on a:
-        $$\int_0^{2\pi}sin(nt)cos(mt)dt= \frac{1}{2}\int_0^{2\pi}sin((m+n)t)-sin((m-n)t)dt$$
-   Si $m= n$, alors elle devient : $\frac{1}{2}\int_0^{2\pi}sin(2mt)dt= 0.$\\
+        $$\int_0^{2\pi}\sin(nt)\cos(mt)dt= \frac{1}{2}\int_0^{2\pi}\sin((m+n)t)-\sin((m-n)t)dt$$
+   Si $m= n$, alors elle devient : $\frac{1}{2}\int_0^{2\pi}\sin(2mt)dt= 0.$\\
   Autrement elle devient: 
-  $$\frac{1}{2}\left[\frac{cos((m-n)t)}{m-n}- \frac{cos((m+n)t)}{m+n} \right]_0^{2\pi} = 0.$$
+  $$\frac{1}{2}\left[\frac{\cos((m-n)t)}{m-n}- \frac{\cos((m+n)t)}{m+n} \right]_0^{2\pi} = 0.$$
   Donc dans tous les cas elle vaut 0.
    
 \end{proof}
@@ -412,25 +430,25 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
 \begin{proof}
     Si $f$ est régulière par morceaux, alors $f^2$ aussi. Ainsi, on peut appliquer la proposition 7 à $f^2$ pour obtenir :
     \begin{align*}
-    \int_0^{2\pi} f(t)^2dt &= \int_0^{2\pi}\left(a_0 + \sum_{n=1}^\infty a_ncos(nt)+b_nsin(nt)\right)^2dt\\
-    &=  \int_0^{2\pi} a_0 ^2 + 2a_0\sum_{n=1}^{\infty}a_ncos(nt)+b_nsin(nt) + \sum_{n=1}^{\infty} \left( a_ncos(nt)+b_nsin(nt)\right)^2dt.
+    \int_0^{2\pi} f(t)^2dt &= \int_0^{2\pi}\left(a_0 + \sum_{n=1}^\infty a_n\cos(nt)+b_n\sin(nt)\right)^2dt\\
+    &=  \int_0^{2\pi} a_0 ^2 + 2a_0\sum_{n=1}^{\infty}a_n\cos(nt)+b_n\sin(nt) + \sum_{n=1}^{\infty} \left( a_n\cos(nt)+b_n\sin(nt)\right)^2dt.
     \end{align*}
     Calculons chacune de ces intégrales séparement:
     $$\int_0^{2\pi} a_0^2dt = 2\pi \cdot a_0^2,$$
     \begin{align*}
-        \int_0^{2\pi}2a_0\sum_{n=1}^{\infty}a_ncos(nt)+b_nsin(nt)dt&= 2a_0\sum_{n=1}^{\infty}\int_0^{2\pi}a_ncos(nt)+b_nsin(nt)dt\\
-        &= 2a_0\left(\sum_{n=1}^{\infty} \int_0^{2\pi}cos(nt)dt + \int_0^{2\pi} sin(nt)dt \right)\\
+        \int_0^{2\pi}2a_0\sum_{n=1}^{\infty}a_n\cos(nt)+b_n\sin(nt)dt&= 2a_0\sum_{n=1}^{\infty}\int_0^{2\pi}a_n\cos(nt)+b_n\sin(nt)dt\\
+        &= 2a_0\left(\sum_{n=1}^{\infty} \int_0^{2\pi}\cos(nt)dt + \int_0^{2\pi} \sin(nt)dt \right)\\
         &= 0
     \end{align*}
     puisque les fonctions sinus et cosinus s'annulent lorsqu'elles sont intégrées sur leurs périodes.\\
     En se rappellant de la Proposition 8, on a que:
     \begin{align*}
-        \int_0^{2\pi}\sum_{n=1}^{\infty}(a_ncos(nt)+b_nsin(nt))^2dt &= \int_0^{2\pi}\sum_{n=1}^{\infty}a_n^2cos(nx)^2+2\sum_{1\leq m, n < \infty} a_mcos(mt)b_nsin(nt) \\
-        &+2  \sum_{1\leq m \neq n < \infty} b_m b_n sin(mt)sin(nt)+2 \sum_{1\leq m \neq n < \infty}a_m a_n cos(mt)cos(nt)\\
-        &+\sum_{n=1}^\infty b_n^2sin(nt)^2dt \\
-        &= \sum_{n=1}^{\infty}a_n^2\int_0^{2\pi}cos(nt)^2dt+ 2\sum_{1\leq m, n < \infty} a_m b_n\int_0^{2\pi} cos(mt)sin(nt)dt\\
-        &+2  \sum_{1\leq m \neq n < \infty} b_m b_n \int_0^{2\pi}sin(mt)sin(nt)dt + \sum_{n=1}^\infty b_n^2\int_0^{2\pi}sin(nt)^2dt\\
-        &+2 \sum_{1\leq m \neq n < \infty}a_m a_n \int_0^{2\pi}cos(mt)cos(nt)dt\\
+        \int_0^{2\pi}\sum_{n=1}^{\infty}(a_n\cos(nt)+b_n\sin(nt))^2dt &= \int_0^{2\pi}\sum_{n=1}^{\infty}a_n^2\cos(nx)^2+2\sum_{1\leq m, n < \infty} a_m\cos(mt)b_n\sin(nt) \\
+        &+2  \sum_{1\leq m \neq n < \infty} b_m b_n \sin(mt)\sin(nt)+2 \sum_{1\leq m \neq n < \infty}a_m a_n \cos(mt)\cos(nt)\\
+        &+\sum_{n=1}^\infty b_n^2\sin(nt)^2dt \\
+        &= \sum_{n=1}^{\infty}a_n^2\int_0^{2\pi}\cos(nt)^2dt+ 2\sum_{1\leq m, n < \infty} a_m b_n\int_0^{2\pi} \cos(mt)\sin(nt)dt\\
+        &+2  \sum_{1\leq m \neq n < \infty} b_m b_n \int_0^{2\pi}\sin(mt)\sin(nt)dt + \sum_{n=1}^\infty b_n^2\int_0^{2\pi}\sin(nt)^2dt\\
+        &+2 \sum_{1\leq m \neq n < \infty}a_m a_n \int_0^{2\pi}\cos(mt)\cos(nt)dt\\
         &= \pi\cdot\sum_{n=1}^{\infty}a_n^2+b_n^2.
     \end{align*}
     On en conclut que 
@@ -457,5 +475,5 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
 \pagebreak
 
 \section{Références}
- [1] Dacorogna, B., \& Tanteri, C. (2018). \textit{Analyse avancée pour ingénieurs} (4e éd.). Presses polytechniques et universitaires romandes
+ [1] Dacorogna, B., \& Tanteri, C. (2018). \textit{Analyse avancée pour ingénieurs} (4e éd.). Presses polytechniques et universitaires romandes.
 \end{document}
