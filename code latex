@@ -28,6 +28,8 @@
 
 \newtheorem{rappel}{Rappel}
 
+\newtheorem{propriete}{Propriété}
+
 \usepackage[T1]{fontenc} 
 
 \title{TM analyse de Fourier}
@@ -250,7 +252,7 @@ Puisque, si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi 
     \begin{align*}
         a_n &= c_n - c_{-n} \\
         &= \frac{1}{T}\int_T P(t)\left(e^{-in\frac{2\pi}{T}t}+e^{in\frac{2\pi}{T}t}\right)dt \\
-        &= \frac{2}{T} \int_T P(t)cos\left( n \frac{2\pi}{T}t\right)dt
+        &= \frac{2}{T} \int_T P(t)\cos\left( n \frac{2\pi}{T}t\right)dt
     \end{align*}
     L'argument pour $b_n$ est similaire.
 \end{proof}
@@ -316,11 +318,11 @@ L'un des théorèmes les plus fondamentaux de l'analyse de Fourier est le théor
     Si de plus, $f$ est continue sur $\mathbb{R}$, alors $Ff(x)$ converge uniformément vers $f(x)$ i.e. $\forall \epsilon > 0, $ $\exists N \in \mathbb{N} $ tel que $\lvert F_nf(x)-f(x) \lvert \leq \epsilon.$ $ \forall x \in \mathbb{R}, \forall n \geq N. $ 
 \end{theoreme}
 Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons plus que des fonctions qui sont $2\pi-$périodiques. Mais tous les résultats énoncés sont généralisables à une quelconque période.
-\begin{proposition}
+\begin{propriete}
     Soit $f$ une fonction $2\pi$-périodique, régulière par morceaux. Alors $Ff$ est aussi $2\pi-$périodique et :\\
     i) Si $f$ est paire, alors $b_n = 0,$ $ \forall n \in \mathbb{N^*}.$\\
     ii) Si $f$ est impaire, alors $a_n = 0, $ $ \forall n \in \mathbb{N}.$
-\end{proposition}
+\end{propriete}
 
 \begin{proof}
     Comme $f$ est continue et réguilière par morceaux, on a par le théorème de Dirichlet que $Ff(x)=f(x)$ sur $\mathbb{R}.$
@@ -342,10 +344,10 @@ Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons
     On dira qu'une fonction $f$ paire admettra une \textbf{série de Fourier en cosinus} et qu'une fonction $f$ impaire admettra une \textbf{série de Fourier en sinus}.
 \end{remarque}
 
-\begin{proposition}(Différentiation terme pa terme)
+\begin{propriete}(Différentiation terme par terme)
     Soit $f$ une fonction $2\pi-$périodique continue,telle que $f'$ soit régulière par morceaux. Alors la dérivée de $Ff$ converge sur $\mathbb{R}$ et on peut dériver terme par terme, i.e.
     $$f'(x)= \sum_{n=1}^{\infty}n\left(b_n\cos\left(nx\right)-a_n\sin\left(nx\right)\right)$$
-\end{proposition}
+\end{propriete}
 \begin{proof}
     Nous montrons le théorème dans le cas où $f\in C^1(\mathbb{R}).$\\
     On a $f(x) = Ff(x),$ $\forall x \in \mathbb{R}$ et $F_N$ qui converge uniformément vers $f$ par le théorème de Dirichlet et donc $f'(x)=\frac{d}{dx}(Ff(x))$, et comme 
@@ -364,15 +366,15 @@ Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons
 \end{proof}
 
 Ce dernier résultat est généralisable dans le cas où la $n$-ième dérivée de $f$ est régulière par morceaux et se montre par récurrence (que nous ne ferons pas):
-\begin{proposition}
+\begin{propriete}
     Soit $f$ une fonction $2\pi-$périodique, continue, avec $f^{(k)}$ régulière par morceaux, alors :
     $$f^{(k)}(x) = \sum_{n=1}^{\infty}n^k\left(a_n\cos^{(k)}\left(nx\right)+b_n\sin^{(k)}\left(nx\right)\right)$$
-\end{proposition}
+\end{propriete}
 
-\begin{proposition}(Intégration terme à terme)
+\begin{propriete}(Intégration terme à terme)
     Soit $f$ une fonction $2\pi-$périodique, continue, réguilière par morceaux. Soit $x_0 \in \mathbb{R}$ quelconque, alors $\forall x \in [x_0, x_0+2\pi[,$ on a : 
     $$\int_{x_0}^xf(t)dt = a_0(x-x_0)+ \sum_{n=1}^{\infty}\int_{x_0}^x\left(a_n\cos\left(nt\right)+\sin\left(nt\right)\right)dt.$$
-\end{proposition}
+\end{propriete}
 
 \begin{proof}
     Comme pour la proposition précédente, on supposera que $f$ est de classe $C^1$.\\
@@ -390,7 +392,7 @@ Ce dernier résultat est généralisable dans le cas où la $n$-ième dérivée 
     \end{align*}
 \end{proof}
 
-\subsection{Identité de Parseval}
+\subsection{Identité de Parseval}\footnote{Marc-Antoine Parseval (1755-1836): mathématicien français}
 Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval. Il permet d'évaluer une série de ses coefficients de Fourier et de le relier par rapport à son intégrale sur la période. Comme nous le verrons plus tard, il est facilement utilisable et permet par exemple de trouver aisément la valeur exacte d'une série qui a l'air au premier abord assez "complexe". Mais avant d'y arriver on a besoin de trois faits sur les fonctions sinus et cosinus:
 \begin{proposition}
       
@@ -421,7 +423,7 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
   Donc dans tous les cas elle vaut 0.
    
 \end{proof}
-\begin{theoreme}(Identité de Parseval \footnote{Marc-Antoine Parseval (1755-1836): mathématicien français})
+\begin{theoreme}(Identité de Parseval)
     Soit $f$ une fonction, $2\pi-$périodique continue, réguilière par partie. 
     Alors on a :
     $$\frac{1}{2\pi}\int_0^{2\pi} f(t)^2dt= a_0^2 + \frac{1}{2}\sum_{n=1}^{\infty} a_n^2+b_n^2 = \frac{1}{2}\sum_{n=-\infty}^{\infty}\lvert c_n\lvert^2.$$
@@ -472,8 +474,255 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
     Cela achève la démonstration.
 \end{proof}
 
+\begin{example}
+    Faisons maintenant un exemple. \\
+    Soit $f: \mathbb{R} \rightarrow \mathbb{R}$ définie par :
+    $f(x) =
+    \left\{
+        \begin{array}{llll}
+         1 & \mbox{si } -1 < x < 1\\
+         -1 & \mbox{si } -\pi < x < -1\\
+         -1 & \mbox{si } 1 < x \leq \pi\\
+         0 & \mbox{si } x= -1 \text{ ou si } x=1
+        \end{array} 
+    \right. 
+        $étendu sur $\mathbb{R}$ par $2\pi-$périodicité i.e. $f(x+2\pi) = f(x), $ $\forall x \in \mathbb{R}.$\\
+    Comme $f$ est continue par morceaux, on calcule ses coefficients de Fourier :\\
+    \begin{align*}
+    a_0 &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)dx\\
+    &= \frac{1}{2\pi}\left(\int_{-\pi}^{-1}-1dx+\int_{-1}^1dx + \int_1^{\pi}-1dx\right)\\
+    &= \frac{1}{2\pi}(4-2\pi)\\
+    &= \frac{1}{\pi}(2-\pi).
+    \end{align*} 
+    On remarque que $f$ est paire par construction et donc $b_n = 0,$ $\forall n \in \mathbb{N^*.}$\\
+    Soit maintenant $n \in \mathbb{N^*}$, calculons $a_n$:
+
+    \begin{align*}
+        a_n &= \frac{2}{2\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)dx\\
+        &= \frac{1}{\pi}\left(\int_{-\pi}^{-1}-\cos(nx)dx + \int_{-1}^1 \cos(nx)dx + \int_{1}^{\pi}-\cos(nx)dx \right)\\
+        &= \frac{1}{\pi}\left( \left[ \frac{-\sin(nx)}{n} \right]_{-\pi}^{-1} + \left[ \frac{\sin(nx)}{n} \right]_{-1}^{1} + \left[ \frac{-\sin(nx)}{n} \right]_{1}^{\pi}\right)\\
+        &= \frac{1}{\pi}\left( \frac{-\sin(-n)}{n}+ \underbrace{\frac{\sin(n\pi)}{n}}_{= 0} + \frac{\sin(n)}{n} - \frac{\sin(-n)}{n} -  \underbrace{\frac{\sin(n\pi)}{n}}_{= 0} +\frac{\sin(n)}{n}\right) \\
+        &= \frac{4\sin(n)}{n\pi}.
+    \end{align*}
+    Comme $f$ est régulière par morceaux, elle est donc égale à sa série de Fourier i.e. :
+    $$f(x) = \frac{1}{\pi}(2-\pi) + \frac{4}{\pi}\sum_{n=1}^{\infty} \frac{\sin(n)}{n} \cos(nx). $$
+    En particulier, pour $x = 0,$ on obtient :\\
+    $$1 = f(0) = \frac{1}{\pi}(2-\pi) + \frac{4}{\pi}\sum_{n=1}^{\infty} \frac{\sin(n)}{n},$$
+    d'où on conclut que $$\sum_{n=1}^{\infty}\frac{\sin(n)}{n} = \frac{\pi-1}{2}.$$
+    De plus, par l'identité de Parseval, 
+    \begin{align*}    
+    1 = \frac{1}{2\pi}\cdot \int_0^{2\pi}dx  &= \left(\frac{2-\pi}{\pi}\right)^2 + \frac{16}{\pi^2}\sum_{n=1}^{\infty}\left(\frac{\sin(n)}{n}\right)^2 \\
+    &= 1 - \frac{4}{\pi} + \frac{4}{\pi^2} + \frac{8}{\pi^2}\sum_{n=1}^{\infty}\left(\frac{\sin(n)}{n}\right)^2.
+    \end{align*}
+    Cela implique que $$\sum_{n=1}^{\infty} \left( \frac{\sin(n)}{n}\right)^2 = \frac{\pi-1}{2}.$$
+\end{example}
+
+\section {Transformée de Fourier}
+Maintenant que nous savons exprimer des fonctions périodiques comme séries de sinus et de cosinus, on peut se demander si cela aurait un sens pour des fonctions non-périodiques. Il se trouve que oui mais c'est plus compliquée que cela. Avant de se pencher plus dessus, il faut d'abord indroduire d'autres notions. 
+
+\subsection{Préliminéaires}
+
+\begin{definition}
+    Soit $f$ une fonction réelle, et $p > 1$ un réel, alors on dit que $f$ est de classe $L^p$ si :
+    $$\lvert\lvert f \lvert\lvert_p = \left(\int_{-\infty}^{\infty}\lvert f(t) \lvert^p dt\right)^{\frac{1}{p}} < \infty.$$ 
+    On note aussi $f \in L^p(\mathbb{R}).$
+\end{definition}
+
+\begin{definition}
+    Soit $\mathbb{K}$ un corps. Alors un $\mathbb{K}$-espace vectoriel est un ensemble $E$ muni d'une addition  $+: E \times E \rightarrow E$ tel que (E, +) soit un groupe abélien, mais aussi que $E$ soit muni d'une multiplication par K à gauche i.e. $\cdot : \mathbb{K} \times E \rightarrow E$ qui soit distributive par rapport à l'addition, admet un élément neutre et une multiplication mixte. C'est-à-dire $\forall u,v \in E, \forall \lambda,$ $ \mu \in \mathbb{K},$ on a 
+    \begin{align*}
+        1)& \text{ }\lambda \cdot(u+v) = \lambda \cdot u + \lambda \cdot v\\
+        2)&\text{ }(\lambda + \mu ) \cdot u = \lambda \cdot u + \mu \cdot u\\
+        3)&\text{ } (\lambda \mu ) \cdot u = \lambda (\mu \cdot u)\\
+        4)&\text{ } 1 \cdot u = u
+    \end{align*}
+    Les éléments de $E$ sont appelés vecteurs et ceux de $\mathbb{K}$ des scalaires.
+\end{definition}
+
+Cette définition peut sembler très théorique mais elle signifie que l'on peut faire de l'arithmétique sur $E$ sans avoir de potentiels problèmes.
+
+\begin{proposition}
+    L'ensemble $L^p(\mathbb{R})$ est un $\mathbb{R}$-espace vectoriel
+\end{proposition}
+
+\begin{proof}
+    On remarque que $f \equiv 0 $ est de classe $L^p$ qui est l'élément neutre de l'addition. Soient maintenant $f,g,h \in L^p(\mathbb{R})$. On a assez facilement ces propriétés :
+    \begin{align*}
+        1)& \text{ } f + (g + h) = (f + g) + h\\
+        2)& \text{ } 0 + f = f + 0 = f\\
+        3)& \text{ } f + (-f) = (-f) + f = 0
+    \end{align*}
+    Pour montrer que $(f+g) \in L^p(\mathbb{R})$, on a :
+    \begin{align*}
+        \lvert\lvert f + g \lvert \lvert_p &= \left(\int_{-\infty}^{\infty} \lvert (f+g)(t) \lvert^p dt\right)^{\frac{1}{p}}\\
+        &= \left(\int_{-\infty}^{\infty} \lvert f(t) + g(t)\lvert ^pdt\right)^{\frac{1}{p}}\\
+        &\leq  \left( \int_{-\infty}^{\infty} \lvert f(t) \lvert ^p dt \right)^{\frac{1}{p}} + \left( \int_{-\infty}^{\infty} \lvert g(t) \lvert ^p dt \right)^{\frac{1}{p}}  \\
+        &=  \lvert\lvert f \lvert \lvert_p +  \lvert\lvert g \lvert \lvert_p
+    \end{align*}
+    L'inégalité ici utilisée s'appelle l'inégalité de Minkowski\footnote{Hermann Minkowski (1864-1909): mathématicien russe}, cela montre donc que $(E, +)$ est un groupe abélien.\\
+    Soient maintenant $\lambda, \mu \in \mathbb{R}$, alors on a :
+    \begin{align*}
+        1)& \text{ } 1 \cdot f = f\\
+        2)& \text{ } (\lambda + \mu) \cdot f =  \lambda \cdot f + \mu \cdot f\\
+        3)& \text{ } \lambda \cdot (f + g) = \lambda \cdot f  + \lambda \cdot g\\
+        4)& \text{ } \lambda (\mu \cdot f) = (\lambda \mu) \cdot f
+    \end{align*}
+    Pour voir que la multiplication reste dans $L^p(\mathbb{R})$, on a : $\lvert\lvert \lambda f \lvert \lvert_p = \lvert \lambda \lvert \cdot \lvert\lvert f \lvert \lvert_p < \infty.$
+    Cela termine la preuve.
+\end{proof}
+
+Dans le reste de ce chapitre, on ne considérera que des fonctions de classe $L^1$
+et $L^2$. 
+
+\begin{definition}
+    Soient $f,g$ deux fonctions réelles continues par morceaux de classes $L^1$, alors on définit le produit de convolution par :
+    $$(f*g)(x):= \int_{-\infty}^{\infty}f(x-t)g(t)dt = \int_{-\infty}^{\infty} g(x-t)f(t)dt = (g*f)(x)$$
+\end{definition}
+
+\subsection{Définition}
+
+\begin{definition}
+    Soit $f$ une fonction réelle continue par morceaux de classe $L^1$, on définit la transformée de Fourier de $f$ par :
+    $$\mathcal{F}(f)(\alpha) = \hat{f}(\alpha) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(t)e^{-i\alpha t}dt. $$
+\end{definition}
+
+\begin{remarque}
+    Certains auteurs préferent utiliser $\frac{1}{2\pi},$ ou $ 1,$ comme coefficient devant l'intégrale ou $e^{-2\pi i \alpha t}$ dans l'intégrale.
+\end{remarque}
+
+\subsection{Propriétés}
+
+\begin{propriete}
+La transformée de Fourier est linéaire, i.e.
+$$\forall \lambda, \mu \in \mathbb{R}, \forall f,g \in L^1(\mathbb{R}), \mathcal{F}(\lambda f + \mu g)(\alpha) = \lambda \mathcal{F}(f)(\alpha) + \mu \mathcal{F}(g)(\alpha)$$
+\end{propriete}
+
+Cette propriété vient du fait que $L^1(\mathbb{R})$ est un $\mathbb{R}$-espace vectoriel.
+
+\begin{propriete}
+    Soit $f$ une fonction réelle continue par morceaux de classe $L^1$, alors sa transformée de Fourier est continue et 
+    $$\lim_{\lvert \alpha \lvert \rightarrow \infty} \left \lvert \hat{f}(\alpha) \right \lvert = 0.$$
+\end{propriete}
+
+La continuité vient du fait que un petit changement en $\alpha$ implique un petit changement dans l'intégrale et donc un petit changement final. Cette propriété s'appelle le théorème de Riemann\footnote{Bernhard Riemann (1826-1866): mathématicien allemand}-Lebesgue \footnote{Henri Lebesgue (1875-1941): mathématicien français}. Sa preuve, technique, consiste a borner $\lvert \hat{f}(\alpha) \lvert$ par une intégrale sur $\mathbb{R}$ d'une différence de valeur de $f$ qui tendent vers 0 lorsque $\alpha$ devient de plus en plus grand absolument et donc leur différence aussi par continuité de $f$.
+
+\begin{propriete}(Transformée de la dérivée)
+    Soit $f$ une fonction réelle, continue par morceaux de classe $L^1$ et $C^n$ et que $\lvert f^{(k)} \lvert $ $\in L^1(\mathbb{R})$, pour $k= 0,...,n$ alors :
+    $$\mathcal{F}\left(f^{(n)}\right)(\alpha) = (i\alpha)^n \mathcal{F}(f)(\alpha).$$
+\end{propriete}
+
+\begin{proof}
+    La preuve se fait par récurrence sur $n$: pour le cas $n=0$, c'est évident.
+    Supposons que ce soit vrai jusqu'à l'ordre $n-1$, montrons que cela l'est aussi à l'ordre $n$  alors on fait une intégration par parties:
+    \begin{align*}
+        \mathcal{F}\left(f^{(n)}\right)(\alpha) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f^{(n)}(t)e^{-i\alpha t}dt\\
+        &= \frac{1}{\sqrt{2\pi}} \left(\underbrace{\left[f^{(n-1)}(t)e^{-i\alpha t} \right]_{-\infty}^{\infty}}_{=0} - \int_{-\infty}^{\infty} f^{(n-1)}(t) (-i\alpha) e^{-i\alpha t}dt\right) \\
+        &= (i\alpha) \underbrace{\mathcal{F}(f^{(n-1)})(\alpha)}_{= (i\alpha)^{n-1} \mathcal{F}(f)(\alpha)}\\
+        &= (i \alpha)^n \mathcal{F}(f)(\alpha).
+    \end{align*}
+    qui est le résultat voulu. A noter que le 0 entre crochet vient du fait que $f^{(n-1)}$ est de classe $L^1$ et donc tend vers 0 à l'infini et que l'égalité vient de l'hypothèse de récurrence.
+\end{proof}
+\begin{propriete}(Dérivation de la transformée)
+    Soit $f$ une fonction réelle continue par morceaux de classe $L^1$ et que $h_n(x) := x^n f(x), n \in \mathbb{N}$ est de classe $L^1$, alors on a :
+    $$\mathcal{F}(h_n)(\alpha) = i^n \frac{d^n}{d\alpha^n}\left( \hat{f}(\alpha)\right).$$
+\end{propriete}
+
+\begin{proof}
+   On souhaite exprimer $\frac{d^n}{d\alpha^n}\left(\hat{f}(\alpha)\right)$ à l'aide d'une intégrale:
+   \begin{align*}
+       \frac{d^n}{d\alpha^n}\left( \hat{f}(\alpha)\right) &= \frac{d^n}{d\alpha^n}\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(t)e^{-i\alpha t}dt\right)\\
+       &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\frac{\partial^n}{\partial\alpha^n}\left(f(t)e^{-i\alpha t}\right)dt\\
+       &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}(-it)^nf(t)e^{-i\alpha t}dt\\
+       &= (-i)^n \mathcal{F}(f)(\alpha).
+   \end{align*}
+   L'intervention intégrale-derivée peut se faire car l'intégrale existe. A noter que dériver $n$ fois une constante fois une exponentielle est la constante fois le facteur de  l'exponentielle puissance $n$ fois l'exponentielle.
+    En multipliant des deux cotés par $i^n$, on obtient le résultat voulu.  
+\end{proof}
+
+\begin{propriete} (Décalage et amplification)
+    Soit $f$  une fonction réelle continue par morceaux de classe $L^1$, et soient $a,b \in \mathbb{R}, a\neq 0$, alors la fonction $g(x) := e^{-ibx}f(ax)$ satisfait :
+    $$\mathcal{F}(g)(\alpha) = \frac{1}{\lvert a \lvert}\mathcal{F}(f)\left(\frac{\alpha +b}{a}\right).$$
+\end{propriete}
+
+\begin{proof}
+    Supposons d'abord que $a>0$, alors on calcule :
+    \begin{align*}
+        \mathcal{F}(g)(\alpha) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(at)e^{-ibt}\cdot e^{-i\alpha t}dt\\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}  f(at)e^{-i(\alpha+b)t}dt \text{ (on pose } at = u, adt = du)\\
+        &= \frac{1}{a}\cdot \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(u) e^{-i\frac{\alpha+b}{a}u}du\\
+        &= \frac{1}{a}\mathcal{F}(f)\left(\frac{\alpha+b}{a}\right).
+    \end{align*}
+    Si maintenant $a<0$, on effectue le changement de variable $t = -u$ pour se retrouver dans l'autre cas et on conclut.
+\end{proof}
+
+L'une des raisons pour lesquelles les transformées de Fourier sont si pratiques, c'est qu'elles se combinent bien avec le produit de convolution.
+\begin{propriete}
+    Soient $f,g$ deux fonctions réelles continues par morceaux de classe $L^1$, alors on a :
+    $$\mathcal{F}(f*g)(\alpha) = \sqrt{2\pi}\mathcal{F}(\alpha)\mathcal{F}(g)(\alpha).$$
+\end{propriete}
+
+\begin{proof}
+    On a :
+    \begin{align*}
+        \mathcal{F}(f*g)(\alpha) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} (f*g)(t)e^{-i\alpha t}dt \\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\left(\int_{-\infty}^{\infty}f(t-x)g(x)dx\right)e^{-i\alpha t}dt\\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(t-x)g(x)e^{-i\alpha t}dxdt\\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}g(x)\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(t-x)e^{-i \alpha t}dt\right)dx\\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}g(x)\left(\int_{-\infty}^{\infty}f(t-x)e^{-i\alpha t} e^{i \alpha x}dt\right)e^{-i\alpha x}dx\\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}g(x)\left(\int_{-\infty}^{\infty}f(t-x)e^{i\alpha (t-x)dt}\right)e^{-i\alpha x}dx \text{ (on pose }t-x = u, dt = du)\\
+        &= \int_{-\infty}^{\infty}g(x)\left(\underbrace{\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(u)e^{i\alpha (u)du}}_{= \mathcal{F}(f)(\alpha) }\right)e^{-i\alpha x}dx\\
+        &= \mathcal{F}(f)(\alpha)\int_{-\infty}^{\infty}g(x)e^{-i\alpha x}dx\\
+        &= \sqrt{2\pi} \mathcal{F}(f)(\alpha) \mathcal{F}(g)(\alpha).
+    \end{align*}
+\end{proof}
+
+On énonce maintenant deux théorèmes très pratiques que nous n'allons pas prouver.
+
+\begin{theoreme}(Formule d'inversion)
+Soit $f$ une fonction réelle, continue par morceaux de classe $L^1$, ainsi que sa transformée de Fourier $\hat{f}$ aussi de classe $L^1$, alors on a :
+$$f(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\hat{f}(\alpha)e^{i\alpha x}d\alpha.$$
+\end{theoreme}
+
+\begin{theoreme}(Identité de Plancherel \footnote{Michel Plancherel (1885-1967): Mathématicien suisse})
+Soit $f$ une fonction réelle continue de classe $L^1$ mais aussi $L^2$, alors sa transformée de Fourier est aussi de classe $L^2$ et de plus :
+$$\int_{-\infty}^{\infty}f(t)^2dt=\int_{-\infty}^{\infty}\left\lvert\hat{f}(\alpha)\right\lvert^2d\alpha.$$
+\end{theoreme}
+
+Tout comme pour les propositions sur les séries de Fourier, on peut se demander ce qu'il se passe si les fonctions sont paires ou impaires.
+
+\begin{proposition}
+Soit $f$ une fonction réelle, paire, continue par morceaux de classe $L^1$. Alors sa transformée de Fourier peut se calculer comme :
+$$\mathcal{F}(f)(\alpha) = \sqrt{\frac{2}{\pi}}\int_0^{\infty}f(t)\cos(\alpha t)dt.$$
+\end{proposition}
+Nous n'on ferons pas la preuve étant donné que c'est le même procédé que pour les séries de fonctions paires (ou impaires respectivement).
+
+\begin{proposition}
+Soit $f$ une fonction réelle, impaire, continue par morceaux de classe $L^1$. Alors sa transformée de Fourier peut se calculer comme :
+$$\mathcal{F}(f)(\alpha) = i\sqrt{\frac{2}{\pi}}\int_0^{\infty}f(t)\sin(\alpha t)dt.$$
+\end{proposition}
+
+Nous n'on ferons pas les preuve étant donné que ce sont les même procédés que pour les séries de fonctions paires (ou impaires respectivement) (voir \textit{Propriété 1}).
+
+\begin{example}
+    Soit $f$ la fonction réelle définie par : $f(x) = \cos(3x)e^{-\lvert x \lvert}.$ Calculons sa transformée de Fourier. \\
+    Remarquons d'abord que $f$ est continue, paire ainsi que de classe $L^1$ et $L^2$ puisque : 
+    \begin{align*}
+        \int_{-\infty}^{\infty}\left\lvert f(t)\right\lvert dt &\leq \int_{-\infty}^{\infty}\left\lvert \cos(t)e^{-\lvert t \lvert}\right\lvert dt, \text{ (|cos(t)|} \leq 1, t \in \mathbb{R})\\
+        &\leq 2\int_0^{\infty} e^{-\lvert t \lvert} dt\\
+        &=2,    
+    \end{align*}
+    et
+    \begin{align*}
+     \int_{-\infty}^{\infty}f(t)^2dt &= \int_{-\infty}^{\infty} \cos(3t)^2 \cdot e^{-2\lvert t \lvert}dt\\
+     &\leq \int_{-\infty}^{\infty} e^{-2t}dt\\
+     &= 1.
+    \end{align*}
+On calcule donc $\hat{f}(\alpha)$:
+
+\end{example}
+
 \pagebreak
 
 \section{Références}
- [1] Dacorogna, B., \& Tanteri, C. (2018). \textit{Analyse avancée pour ingénieurs} (4e éd.). Presses polytechniques et universitaires romandes.
+ [1] Dacorogna, B., \& Tanteri, C. (2018). \textit{Analyse avancée pour ingénieurs} (4e éd.). Presses polytechniques et universitaires romandes. \\
 \end{document}
