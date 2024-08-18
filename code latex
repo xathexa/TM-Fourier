@@ -392,7 +392,7 @@ Ce dernier résultat est généralisable dans le cas où la $n$-ième dérivée 
     \end{align*}
 \end{proof}
 
-\subsection{Identité de Parseval}\footnote{Marc-Antoine Parseval (1755-1836): mathématicien français}
+\subsection{Identité de Parseval}
 Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval. Il permet d'évaluer une série de ses coefficients de Fourier et de le relier par rapport à son intégrale sur la période. Comme nous le verrons plus tard, il est facilement utilisable et permet par exemple de trouver aisément la valeur exacte d'une série qui a l'air au premier abord assez "complexe". Mais avant d'y arriver on a besoin de trois faits sur les fonctions sinus et cosinus:
 \begin{proposition}
       
@@ -423,14 +423,14 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
   Donc dans tous les cas elle vaut 0.
    
 \end{proof}
-\begin{theoreme}(Identité de Parseval)
+\begin{theoreme}(Identité de Parseval\footnote{Marc-Antoine Parseval (1755-1836): mathématicien français})
     Soit $f$ une fonction, $2\pi-$périodique continue, réguilière par partie. 
     Alors on a :
     $$\frac{1}{2\pi}\int_0^{2\pi} f(t)^2dt= a_0^2 + \frac{1}{2}\sum_{n=1}^{\infty} a_n^2+b_n^2 = \frac{1}{2}\sum_{n=-\infty}^{\infty}\lvert c_n\lvert^2.$$
 \end{theoreme}
 
 \begin{proof}
-    Si $f$ est régulière par morceaux, alors $f^2$ aussi. Ainsi, on peut appliquer la proposition 7 à $f^2$ pour obtenir :
+    Si $f$ est régulière par morceaux, alors $f^2$ aussi. Ainsi, on peut appliquer la \textit{propriété 3} à $f^2$ pour obtenir :
     \begin{align*}
     \int_0^{2\pi} f(t)^2dt &= \int_0^{2\pi}\left(a_0 + \sum_{n=1}^\infty a_n\cos(nt)+b_n\sin(nt)\right)^2dt\\
     &=  \int_0^{2\pi} a_0 ^2 + 2a_0\sum_{n=1}^{\infty}a_n\cos(nt)+b_n\sin(nt) + \sum_{n=1}^{\infty} \left( a_n\cos(nt)+b_n\sin(nt)\right)^2dt.
@@ -443,7 +443,7 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
         &= 0
     \end{align*}
     puisque les fonctions sinus et cosinus s'annulent lorsqu'elles sont intégrées sur leurs périodes.\\
-    En se rappellant de la Proposition 8, on a que:
+    En se rappellant de la \textit{propriété 4}, on a que:
     \begin{align*}
         \int_0^{2\pi}\sum_{n=1}^{\infty}(a_n\cos(nt)+b_n\sin(nt))^2dt &= \int_0^{2\pi}\sum_{n=1}^{\infty}a_n^2\cos(nx)^2+2\sum_{1\leq m, n < \infty} a_m\cos(mt)b_n\sin(nt) \\
         &+2  \sum_{1\leq m \neq n < \infty} b_m b_n \sin(mt)\sin(nt)+2 \sum_{1\leq m \neq n < \infty}a_m a_n \cos(mt)\cos(nt)\\
@@ -473,6 +473,8 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
     \end{align*}
     Cela achève la démonstration.
 \end{proof}
+
+\subsection{Exemple}
 
 \begin{example}
     Faisons maintenant un exemple. \\
@@ -683,6 +685,10 @@ Soit $f$ une fonction réelle, continue par morceaux de classe $L^1$, ainsi que 
 $$f(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\hat{f}(\alpha)e^{i\alpha x}d\alpha.$$
 \end{theoreme}
 
+\begin{remarque}
+    On peut aussi noter $f(x) = \mathcal{F}^{-1}(\hat{f})(x)$.
+\end{remarque}
+
 \begin{theoreme}(Identité de Plancherel \footnote{Michel Plancherel (1885-1967): Mathématicien suisse})
 Soit $f$ une fonction réelle continue de classe $L^1$ mais aussi $L^2$, alors sa transformée de Fourier est aussi de classe $L^2$ et de plus :
 $$\int_{-\infty}^{\infty}f(t)^2dt=\int_{-\infty}^{\infty}\left\lvert\hat{f}(\alpha)\right\lvert^2d\alpha.$$
@@ -694,7 +700,6 @@ Tout comme pour les propositions sur les séries de Fourier, on peut se demander
 Soit $f$ une fonction réelle, paire, continue par morceaux de classe $L^1$. Alors sa transformée de Fourier peut se calculer comme :
 $$\mathcal{F}(f)(\alpha) = \sqrt{\frac{2}{\pi}}\int_0^{\infty}f(t)\cos(\alpha t)dt.$$
 \end{proposition}
-Nous n'on ferons pas la preuve étant donné que c'est le même procédé que pour les séries de fonctions paires (ou impaires respectivement).
 
 \begin{proposition}
 Soit $f$ une fonction réelle, impaire, continue par morceaux de classe $L^1$. Alors sa transformée de Fourier peut se calculer comme :
@@ -702,6 +707,8 @@ $$\mathcal{F}(f)(\alpha) = i\sqrt{\frac{2}{\pi}}\int_0^{\infty}f(t)\sin(\alpha t
 \end{proposition}
 
 Nous n'on ferons pas les preuve étant donné que ce sont les même procédés que pour les séries de fonctions paires (ou impaires respectivement) (voir \textit{Propriété 1}).
+
+\subsection{Exemple}
 
 \begin{example}
     Soit $f$ la fonction réelle définie par : $f(x) = \cos(3x)e^{-\lvert x \lvert}.$ Calculons sa transformée de Fourier. \\
@@ -718,8 +725,319 @@ Nous n'on ferons pas les preuve étant donné que ce sont les même procédés q
      &= 1.
     \end{align*}
 On calcule donc $\hat{f}(\alpha)$:
-
+\begin{align*}
+    \hat{f}(\alpha) &= \sqrt{\frac{2}{\pi}}\int_0^{\infty}\cos(3t)e^{-\lvert t \lvert}\cos(\alpha t)dt\\
+    &= \sqrt{\frac{2}{\pi}}\cdot \frac{1}{2}\left(\int_0^{\infty}\cos\left((3+\alpha)t\right)e^{-t}dt + \int_0^{\infty}\cos\left((3-\alpha)t\right)e^{-t}dt\right).\\
+\end{align*}
+Définissons une intégrale à paramétre : $I_a = \int_0^{\infty}\cos(at)e^{-t}dt.$
+On calcule :
+\begin{align*}
+    I_a &= \int_0^{\infty}\cos(at)e^{-t}dt\\
+    &= \left[\cos(at)\cdot \left(-e^{-t}\right)\right]_0^{\infty}-a\int_0^{\infty}(-\sin(at))\cdot \left(-e^{-t}\right)dt\\
+    &= 0 - (-1) - a\int_0^{\infty}\sin(at)e^{-t}dt\\
+    &= 1-a\left(\left[\sin(at)\cdot \left(-e^{-t}\right)\right]_0^{\infty}- a\int_0^{\infty}\cos(at)\cdot\left(-e^{-t}\right)dt\right)\\
+    &= 1-a\left(0-0 +a\cdot \underbrace{\int_0^{\infty}\cos(at)e^{-t}dt}_{=I_a}\right).
+\end{align*}
+On a donc $I_a + a^2 \cdot I_a = 1,$ ce qui se réecrit comme $I_a = \frac{1}{1+a^2}.$
+Revenons donc au calcul de $\hat{f}(\alpha):$
+\begin{align*}
+    \hat{f}(\alpha) &= \frac{1}{\sqrt{2\pi}}\left(I_{3+\alpha} + I_{3-\alpha}\right)\\
+    &= \frac{1}{\sqrt{2\pi}}\left(\frac{1}{1+(3+\alpha)^2}+\frac{1}{1+(3-\alpha)^2}\right)\\
+    &= \sqrt{\frac{2}{\pi}}\left(\frac{10+\alpha^2}{(1+(3+\alpha)^2)(1+(3-\alpha)^2)}\right)
+\end{align*}
+Intéressons nous maintenant au cas $\alpha = 0,$ alors on a :
+$$\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\cos(3t)e^{-\lvert t \lvert}dt = \hat{f}(0) = \sqrt{\frac{2}{\pi}}\left(\frac{10}{(1+9)^2}\right) = \frac{1}{5\sqrt{2\pi}}.$$ On conclut que : 
+$$\int_{-\infty}^{\infty}\cos(3t)e^{-\lvert t \lvert }dt = \frac{1}{5}.$$ 
+Si maintenant on prend $\alpha = 3,$ on a :
+$$\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\cos(3t)^2e^{-\lvert t \lvert}dt = \hat{f}(3) = \sqrt{\frac{2}{\pi}}\left(\frac{10+3^2}{(1+6^2)\cdot 1}\right) = \frac{19\sqrt{2}}{37\sqrt{\pi}}. $$
+Et donc :
+$$\int_{-\infty}^{\infty}\cos(3t)^2e^{-\lvert t \lvert}dt = \frac{38}{37}.$$
+De plus, par l'identité de Plancherel, on a:
+$$\int_{-\infty}^{\infty}\cos(3t)^2 e^{-2\lvert t \lvert}dt = \int_{-\infty}^{\infty}f(t)^2dt =\int_{-\infty}^{\infty} \hat{f}(\alpha)^2d\alpha =\frac{2}{\pi}\int_{-\infty}^{\infty}\left(\frac{10+\alpha^2}{(1+(3+\alpha)^2)(1+(3-\alpha)^2)}\right)^2d\alpha.$$
+Ces deux intégrales sont difficilement calculables mais elles valent $\frac{11}{20}.$
 \end{example}
+
+\section{Transformée de Laplace}
+
+Maintenant que nous avons l'idée de la transformée de Fourier, on se demande ce que l'on peut faire si la fonction en question n'est pas de classe $L^1$. Pour cela, il existe un outil similaire, la transformée de Laplace\footnote{Pierre-Simon Laplace (1749-1827): Mathématicien français}. Mais d'abord, voyons quelques notions d'analyse complexe.
+
+\subsection{Préliminaires} 
+
+\begin{definition}
+    Soit $z = a + bi$ un nombre complexe, alors on note $\mathcal{R}(z)$ la \textbf{partie réelle} de $z$ qui vaut $a$ et $\mathcal{I}(z)$ la \textbf{partie imaginaire} de $z$ qui vaut $b$.    
+\end{definition}
+
+\begin{definition}
+    Soit $O\in \mathbb{C}$ un ouvert, alors on dit que $f : O \in \mathbb{C}$ est \textbf{holomorphe} si, $\forall z_0 \in O$, $f$ est dérivable en $z_0$ i.e. 
+    $$\lim_{z \rightarrow }\frac{f(z)-f(z_0)}{z-z_0}$$
+    existe et est finie. 
+\end{definition}
+
+\subsection{Définition}
+
+\begin{definition}
+    Soit $f : \mathbb{R_+} \rightarrow \mathbb{R} $ une fonction continue par morceaux (étendu à 0 sur $\mathbb{R_{-}^*}$). Soit maintenant $\gamma_0 \in \mathbb{R}$ tel que :
+    $$\int_{-\infty}^{\infty}\lvert f(t) \lvert e^{-\gamma_0 t}dt < \infty,$$
+    alors on appelle \textbf{transformée de Laplace} la fonction 
+    $$\mathcal{L}(f)(z) = F(z) := \int_0^\infty f(t)e^{-tz}, t\in \overline{O}$$ 
+    où $O:= \{z\in \mathbb{C}| \mathcal{R}(z)>\gamma_0\}, \overline{O} = \{z\in \mathbb{C} | \mathcal{R}(z)\geq \gamma_0\}.$
+\end{definition}
+
+\begin{remarque}
+   Un tel $\gamma_0$ est appelé l'\textbf{abscisse de convergence} de $f$.
+\end{remarque}
+
+Etant donné que la transformée de Laplace a une défition très similaire à celle de Fourier, nous ne ferons pas les preuves car les idées sont strictement les mêmes sauf s'il n'y a pas de propriété similaire.
+\subsection{Propriétés}
+Pour le reste de cette partie, on gardera les mêmes hypothèses sur $f,\gamma_0$ et $O.$
+
+\begin{propriete}
+    La transformée de Laplace de $f$ est holomorphe dans $O$, de plus, si $g(t):= tf(t)$, alors :
+    $$F'(z) = -\int_0^{\infty}tf(t)e^{-tz} = -\mathcal{L}(g)(z), z \in O.$$
+\end{propriete}
+
+\begin{propriete}
+    Plus généralement si $g(t):=t^nf(t), n \in \mathbb{N}$, alors :
+    $$\mathcal{L}(g)(z) = (-1)^nF^{(n)}(z).$$
+\end{propriete}
+
+\begin{propriete}
+    Tout comme la transformée de Fourier, la transformée da Laplace est linéaire i.e. 
+    $$\forall a,b \in \mathbb{R}, \mathcal{L}(af+bg)(z) = a\mathcal{L}(f)(z)+b\mathcal{L}(g)(z).$$ Avec $g$ satisfaisant les mêmes hypothèses que $f$.
+\end{propriete}
+
+\begin{propriete}(Transformée de la dérivée)
+    Si maintenant $f$ est de classe $C^1$ sur $\mathbb{R}$, et que $f'$ satisfait les mêmes hypothèses que $f$ alors :
+    $$\mathcal{L}(f')(z)= z\mathcal{L}(f)(z)-f(0), z \in O.$$
+\end{propriete}
+Par rapport à la transformée de Fourier, ce "$-f(0)$" provient de l'intégration sur $\mathbb{R_+}$ et non pas sur $\mathbb{R}.$
+
+\begin{propriete}
+    Si maintenant $f$ est de classe $C^n$, et que $f^{(k)}$ satisfait les mêmes hypothèses que $f$ pour $1\leq k \leq n,$ alors on peut montrer par récurrence (sur $n$) que:
+    $$\mathcal{L}(f^{(n)})(z) = z^n\mathcal{L}(f)(z) - \sum_{k=0}^{n-1}z^kf^{(n-k-1)}(0), z \in O.$$
+\end{propriete}
+ Comparé à la transformée de Fourier, celle de Laplace a du sens a être intégré.
+ 
+\begin{propriete}
+    Suposons de plus que $f$ est continue, définissons maintenant une fonction  $\varphi$ continue définie par :
+    $$\varphi(t) := \int_0^tf(s)ds,$$
+    alors on a :
+    $$\mathcal{L}(\varphi)(z)= \frac{\mathcal{L}(f)(z)}{z}, z \in O.$$
+\end{propriete}
+
+\begin{proof}
+    Remarquons que par construction de $\varphi,$ elle sera de classe $C^1$, on a donc par le théorème fondamental du calcul intégral que $\varphi'(t) = f(t).$ Soit $z \in O$, alors par la \textit{propriété 14} :
+    \begin{align*}
+        \mathcal{L}(\varphi')(z) &= z\mathcal{L}(\varphi)(z) - \underbrace{\varphi(0)}_{=0}\\
+        &= z\mathcal{L}(\varphi)(z).
+    \end{align*}
+    En divisant par $z$, on conclut que $\mathcal{L}(\varphi)(z) = \frac{\mathcal{L}(f)(z)}{z}.$ 
+\end{proof}
+
+\begin{propriete}(Décalage et amplification)
+    Soient $a,b \in \mathbb{R}, a > 0,$ et soit $g(t):= e^{-bt}f(at)$, alors :
+    $$\mathcal{L}(g)(z) = \mathcal{L}(f)\left(\frac{z+b}{a}\right), \mathcal{R}\left(\frac{z+b}{a}\right) \geq \gamma_0.$$
+\end{propriete}
+
+\begin{propriete}
+    Soit $g$ une fonction satisfaisant les mêmes hypothèses que $f$, alors :
+    $$\mathcal{L}(f*g)(z)= \mathcal{L}(f)(z)\cdot \mathcal{L}(g)(z), z \in O.$$
+\end{propriete}
+
+\begin{propriete}
+    Supposons $f$ continue ainsi que sa transformée de Laplace, F, qui satisfait :
+    $$\int_{-\infty}^{\infty}\lvert F(\gamma +is)\lvert ds,$$
+    avec $\gamma \in \mathbb{R}$, alors :
+    $$f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(\gamma+is)e^{(\gamma+is)t}ds, t \in \mathbb{R}.$$
+\end{propriete}
+\begin{remarque}
+    
+Cette dernière intégrale peut aussi s'écrire : $f(t) = \mathcal{L}^{-1}(F)(t)$
+\end{remarque}
+
+\subsection{Exemples}
+
+\begin{example}
+    Calculons les transformées de Laplace de $f(t) :=\sin(at) $ et de $g(t): =\cos(at), a \neq 0:$\\
+    Comme $f$ et $g$ satisfont les hypothèses requises et $\gamma_0 > 0$ est une abscisse de convergence. Donc on a, pour $\mathcal{R}(z)>0$ :
+    \begin{align*}
+        \mathcal{L}(f)(z) &= \int_0^{\infty}\sin(at)e^{-tz}dt\\
+        &= \left[\frac{1}{a}\left(-\cos(at)e^{-tz}\right)\right]_0^{\infty}- \frac{1}{a}\int_0^{\infty}(-\cos(at))(-ze^{-tz})dt\\
+        &= 0 + \frac{1}{a} - \frac{z}{a}\int_0^{\infty}\cos(at)e^{-tz}dt\\
+        &= \frac{1}{a} - \frac{z}{a}\left(\left[\frac{1}{a}\sin(at)e^{-tz}\right]_0^{\infty}-\frac{1}{a}\int_0^{\infty}\sin(at)(-ze^{-tz})dt\right)\\
+        &= \frac{1}{a} - \frac{z}{a}\left(0-0+\frac{z}{a}\underbrace{\int_0^{\infty}\sin(at)e^{-tz}dt}_{=\mathcal{L}(f)(z)}\right).
+        \end{align*}
+    On a donc $\mathcal{L}(f)(z) = \frac{1}{a} - \frac{z^2}{a^2}\mathcal{L}(f)(z).$ et on en déduit :$\mathcal{L}(f)(z)\underbrace{\left(1+\frac{z^2}{a^2}\right)}_{=\frac{a^2+z^2}{a^2}} = \frac{1}{a}$ pour conclure que :
+    $$\mathcal{L}(f)(z) = \frac{a}{a^2+z^2}, \mathcal{R}(z)>0.$$
+
+    Comme on a $f'(t) = a \cdot g(t),$ par les \textit{propriété 13} et \textit{14}:
+    \begin{align*}
+        \mathcal{L}(g)(z) &= \mathcal{L}\left(\frac{1}{a}f'\right)(z)\\
+        &= \frac{1}{a}(z\mathcal{L}(f)(z)-\underbrace{f(0)}_{=0})\\
+        &= \frac{1}{a}\cdot \frac{az}{a^2+z^2}\\
+        &= \frac{z}{a^2+z^2}, \mathcal{R}(z) >0.
+    \end{align*}
+\end{example}
+
+\begin{example}
+    Calculons la transformée de Laplace de $f_n(t) := t^n, n \in \mathbb{N}.$\\
+    Comme pour l'autre exemple, $f_n$ satisfait clairment les hypothèse et $\gamma_0 > 0$ est aussi une abscisse de convergence. On admet que $\mathcal{L}(f_n)(z) = \frac{n!}{z^{n+1}}.$ Pour le montrer, on procède par récurrence : pour $n=0,$ le calcul est direct :
+    $$\mathcal{L}(f_0)(z) = \int_0^{\infty}e^{-tz}dt = \left[\frac{-1}{z}e^{-tz}\right]_0^{\infty} = \frac{-1}{z}(0-(-1)) = \frac{1}{z}. $$
+    On suppose que cela est vrai jusqu'à l'ordre $n-1,$ alors on a :
+    \begin{align*}
+        \mathcal{L}(f_n)(z) &= \int_0^{\infty}t^ne^{-tz}dt\\
+        &=\left[\frac{-1}{z}t^ne^{\frac{-1}{z}tz}\right]_0^{\infty} - \int_0^{\infty}nt^{n-1}(-e^{-tz})dt\\
+        &= 0 - 0 + \frac{n}{z}\underbrace{\int_0^{\infty}t^{n-1}e^{-tz}dt}_{=\mathcal{L}(f_{n-1})(z)}\\
+        &= \frac{n}{z} \cdot \frac{(n-1)!}{z^n}\\
+        &= \frac{n!}{z^{n+1}}.
+    \end{align*}
+    Qui est bien ce qu'il fallait démontrer.
+\end{example}
+
+\section{Equations différentielles ordinaires}
+
+Avant de voir des problèmes sur des équations différentielles à dérivées partielles, que l'on abrégera EDP à partit de maintenant, voyons l'application pour des equations différentielles classiques. 
+
+\subsection{Equations différentielles}
+
+\subsection{Préliminaires}
+
+On rappelle d'abord ce que sont des équations différentielles d'ordre 1 et 2 (nous n'allons pas utililser de dérivées d'ordre supérieures car les solutions seraient trop complexes):
+\begin{definition}
+    Soit $ I = [t_0;\infty[$ un intervalle de $\mathbb{R},$ et $f \in C^1(I \times \mathbb{R}).$ On appelle le \textbf{problème de Cauchy} l'\textbf{équation différentielle d'ordre 1} suivante ayant $u \in C^1(\mathbb{R})$ comme solution:\\ 
+    $$\left\{
+        \begin{array}{ll}
+        u'(t) = f(t,u(t)), t \in I  &  \\
+        u(t_0) = u_0& \\
+    \end{array}
+    \right.$$
+\end{definition}
+
+\begin{definition}
+     Soit $ I = [t_0;\infty[$ un intervalle de $\mathbb{R},$ et $f \in C^1(I \times \mathbb{R} \times \mathbb{R}).$ On appelle le \textbf{problème de Cauchy} l'\textbf{équation différentielle d'ordre 2} suivante ayant $u \in C^1(\mathbb{R})$ comme solution:\\ 
+    $$\left\{
+        \begin{array}{lll}
+        u''(t) = f(t,u(t),u'(t)), t \in I  &  \\
+        u'(t_0) = u_1 & \\
+        u(t_0) = u_0
+    \end{array}
+    \right.$$
+\end{definition}
+
+Dans ces deux définitions, on peut également prendre $I$ un intervalle cet fois fermé à droite.
+
+\begin{definition}
+    Dans le cas où $I = [t_0,t_1]$ est un intervalle fermé et que l'on a des conditions $u(t_0) = u_0, u(t_1) = u_1,$ elles s'appellent les \textbf{condtions aux bords.}
+\end{definition}
+
+\subsection{Exemples}
+
+\begin{example}
+    Supposons que l'on veuille résoudre l'équation differentielle suivante :
+    $$\left\{
+        \begin{array}{lll}
+        a_2u''(t)+a_1u'(t)+a_0u(t)=f(t), t>0  &  \\
+        u'(0) = u_1 & \\
+        u(0) = u_0
+    \end{array}
+    \right.$$
+    avec $a_2,a_1,a_0$ des  constantes et $f$ une fonction continue.\\
+    Notons $U(z) := \mathcal{L}(u)(z)$, $F(z):=\mathcal{L}(f)(z).$
+    Alors on peut calculer :
+    $$\mathcal{L}(u')(z)=z \mathcal{L}(u)(z) - u(0) = zU(z)-u_0.$$
+    $$\mathcal{L}(u'')(z) = z^2\mathcal{L}(u)(z)-zu(0)-zu'(0) = z^2U(z)-zu_0-u_1.$$
+    En prenant la transformée de Laplace des deux côtés de l'équation on obtient :
+    \begin{align*}
+        F(z)&=\mathcal{L}(f)(z)\\
+        &= \mathcal{L}(a_2u''+a_1u'+a_0u)(z)\\
+        &= a_2(z^2U(z)-zu_0-u_1)+a_1(zU(z)-u_0)+a_0U(z)\\
+        &= U(z)(a_2z^2+a_1z+a_0)-(a_2u_0z-a_2u_1-a_1u_0).
+    \end{align*}
+    On peut donc réécrire 
+    $$U(z) = \frac{F(z)+a_2u_0z+a_2u_1+a_1u_0}{a_2z^2+a_1z+a_0}.$$
+    Et donc la solution recherchée $u(t)$ est la transformée de Laplace inverse de l'expression i.e.
+    $$u(t) = \mathcal{L}^{-1}\left(\frac{F(z)+a_2u_0z+a_2u_1+a_1u_0}{a_2z^2+a_1z+a_0}\right)(t).$$
+\end{example}
+
+Voyons maintenant deux problèmes qui nous serons très utiles pour la suite :
+
+\begin{example}
+    Soit $\lambda$ un réel quelconque et soit le problème de Cauchy suivant :
+    $$\left\{
+        \begin{array}{lll}
+        u''(t)+\lambda u(t)=0, t > 0  &  \\
+        u'(0) = u_1 & \\
+        u(0) = u_0
+    \end{array}
+    \right.$$
+    On aimerait trouver des solutions non-trivialles ($u(t)\neq 0, \forall t>0$)\\
+    Si $\lambda = 0,$ alors la seule solution est $u(t)=u_1t+u_0$ résultat d'une double intégration.\\
+    Supposons maintenant que $\lambda <0,$ en reprenant la méthode vue au dessus, on obtient :
+    $$z^2U(z)-u_0z-u_1+\lambda U(z) = 0.$$ 
+    Ce qui peut se réécrire comme :
+    $$U(z)=\frac{u_0z+u_1}{z^2+\lambda}.$$
+    On peut montrer (par la même méthode utilisée pour le sinus et la cosinus) que si l'on pose $f(t) = \cosh(at), $ $g(t)=\sinh(at),$ alors $\mathcal{L}(f)(z) = \frac{a}{z^2-a^2}, \mathcal{L}(g)(z) = \frac{z}{z^2-a^2}, \mathcal{R}(z) > a.$
+    On a donc :
+    \begin{align*}
+    u(t) &= u_0\mathcal{L}^{-1}\left(\frac{z}{z^2-\left(\sqrt{-\lambda}\right)^2}\right)(t)+ \frac{u_1}{\sqrt{-\lambda}}\mathcal{L}^{-1}\left(\frac{\sqrt{-\lambda}}{z^2-\left(\sqrt{-\lambda}\right)^2}\right)(t)\\
+    &= u_0\cosh\left(t\sqrt{-\lambda}\right)+\frac{u_1}{\sqrt{-\lambda}}\sinh\left(t\sqrt{-\lambda}\right).
+    \end{align*}
+    Supposons maintenant que $\lambda >0.$
+    Les premières étapes ne changent rien au calcul de $U(t)$ et donc on a :
+    \begin{align*}
+        u(t)&=u_0\mathcal{L}^{-1}\left(\frac{z}{z^2+\left(\sqrt{\lambda}\right)^2}\right)(t)+ \frac{u_1}{\sqrt{\lambda}}\mathcal{L}^{-1}\left(\frac{\sqrt{\lambda}}{z^2+\left(\sqrt{\lambda}\right)^2}\right)(t)\\
+        &= u_0\cos\left(t\sqrt{\lambda}\right) + \frac{u_1}{\sqrt{\lambda}}\sin\left(t\sqrt{\lambda}\right).
+    \end{align*}
+\end{example}
+Le deuxième problème est très similaire mais sa résolution est très différente.
+\begin{example}(Problème de Sturm\footnote{Jacques Charles François Sturm (1803-1855): mathématicien français}-Liouville\footnote{Joseph Liouville (1809-1882): mathématicien français})
+Le but est de trouver des $\lambda \in \mathbb{R}$ tels que l'équation différentielle suivante admette une solution non-trivialle.
+$$\left\{
+        \begin{array}{ll}
+        u''(t)+\lambda u(t)=0, t \in ]0,L[  &  \\
+        u(0) = 0 = u(L) 
+    \end{array}
+    \right.$$
+    Comme avant nous procédons cas par cas: si $\lambda = 0,$ alors nous avons vu avant que la solution sera de la forme : $u(0) = u_1t,$ avec $u_1$ une constante. En prenant la condition $u(L)=0, $ on doit forcément avoir $u_1 = 0$ et donc il n'y a pas de solution non-trivialle.\\
+    Si maintenant $\lambda < 0,$ on doit avoir $u(t) = u_1 \sinh\left(t\sqrt{-\lambda}\right),$ avec $u_1$ une constante. De plus en ayant $u(L) = 0,$ alors $u_1 \sinh\left(L\sqrt{-\lambda}\right) = 0$ donc la seule possibilité est la solution trivialle.
+    Prenons maintenant $\lambda > 0,$ la solution doit être de la forme $u(t) = u_1\sin\left(t\sqrt{\lambda}\right).$ Comme $u(L)= 0,$ on déduit :
+    \begin{align*}
+        \sin\left(L\sqrt{\lambda}\right) &\iff L\sqrt{\lambda} = n\pi, n \in \mathbb{N}\\
+        &\iff \lambda = \left(\frac{n\pi}{L}\right)^2, n \in \mathbb{N}.
+    \end{align*}
+    Les seules solutions du problème de Liouville sont de la forme $u(t) = a\sin\left(\frac{n\pi}{L}t\right), n \in \mathbb{N}.$ Remarquons que dans ce cas, la solution n'est pas unique mais elle l'est à une constante près.
+\end{example}
+
+\begin{example}
+    Supposons que l'on veuille résoudre l'équation suivante :
+    $$\left\{
+        \begin{array}{lll}
+        u''(t)- 16u(t)= 7\cos(3t)-2\sin(4t), t \in [0,2\pi]  &  \\
+        u(0) = u(2\pi)  &\\
+        u'(0) = u'(2\pi).
+    \end{array}
+    \right.$$
+    Cette fois nous supposons que $u$ s'écrive comme une série de Fourier i.e. $\exists a_n, b_n \in \mathbb{R}, n \in \mathbb{N}$ tel que: 
+    $$u(t) = a_0 + \sum_{n=1}^{\infty}a_n\cos(nx)+ b_n\sin(nx).$$
+    On suppose de plus que $u$ est de classe $C^2$ et on peut dire que :
+    $$u''(t) = -\sum_{n=1}^{\infty}n^2(a_n\cos(nt)+b_n\sin(nt))$$
+    On a donc : 
+    \begin{align*}
+    u''(t) - 16u(t) &= -16a_0 -\sum_{n=1}^{\infty}n^2(a_n\cos(nt)+b_n\sin(nt))-16\sum_{n=1}^{\infty}(a_n\cos(nt)+b_n\sin(nt))\\
+    &=-16a_0 -\sum_{n=1}^{\infty}(n^2+16)(a_n\cos(nt)+b_n\sin(nt))
+    \end{align*}
+    Comme cela doit être égal à $7\cos(3t)-2\sin(4t),$ on peut comparer les termes : \\
+    On doit avoir :$-16a_0 = 0, -(3^2+16)a_3=7, -(4^2+16)a_4 = 2$, tout le reste est nul.
+    On a donc $u(t) = -\frac{7}{25}\cos(3t)-\frac{1}{16}\sin(4t)$.
+    On peut bien vérifier que $u$ est de classe $C^2$ et satisfait les conditions aux bords et que donc la solution est valable.
+\end{example}
+    Cette méthode est en fait généralisable à n'importe quelle fonction $f$ tant qu'elle est périodique et marche aussi avec des dérivées d'ordres plus élevés de $u$.
+
+\section{Equations à dérivées partielles}
+Dans cette section, nous allons uniquement considérer des fonctions continues à deux variables : $u(x,y)$ ou $u(x,t)$ dépendant du problème en question.
+\begin{definition}
+    Soit $f$ une fonction continue 
+\end{definition}
 
 \pagebreak
 
