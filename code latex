@@ -81,7 +81,7 @@
 \pagebreak
 
 \section{Introduction}
-L'analyse de Fourier a été élaboré au début du XIX siècle par Joseph Fourier\footnote{Joseph Fourier (1768-1830): analyste français.}  dans le but d'étudier les corps chauds. Pour cela, il a dû voir d'un autre oeil la manière de penser aux fonctions trigonométriques. Toute son oeuvre se base sur le simple fait que toute fonction périodique peut également s'écrire comme série de sinus et de cosinus de fréquences entière de la fonction de base. \par
+L'analyse de Fourier a été élaboré au début du XIX siècle par Joseph Fourier\footnote{Joseph Fourier (1768-1830): analyste français.}  dans le but d'étudier les corps chauds. Pour cela, il a dû voir d'un autre oeil la manière de penser aux fonctions trigonométriques. Toute son oeuvre se base sur le simple fait que toute fonction périodique peut également s'écrire comme série de sinus et de cosinus de fréquences entières de la fonction de base. \par
 L'objectif de ce TM sera de dériver en grande partie cette analyse (série et transformée de Fourier) des fonctions périodiques afin de développer une méthode étant capable de résoudre des équations à dérivées partielles.
 
 \pagebreak
@@ -90,12 +90,12 @@ L'objectif de ce TM sera de dériver en grande partie cette analyse (série et t
 \subsection{Préliminaires}
 Avant de commencer de parler des séries de Fourier, nous allons faire un rappel des connaisances réquises pour suivre ce travail.
 \begin{definition} 
-Une fonction $f$ est dite \textbf{périodique} ou $\mathbf{T}$\textbf{-périodique} si $\exists T > 0$ minimal tel que  $f(x+T) = f(x)$ $\forall x \in \mathbb{R}$
+Une fonction $f$ est dite \textbf{périodique} ou $\mathbf{T}$\textbf{-périodique} si $\exists $ $T > 0$ minimal tel que  $f(x+T) = f(x)$ $\forall x \in \mathbb{R}$
 
 \end{definition}
 
 \begin{example}
-    On a les fonctions $\sin\left(n\frac{2\pi}{T}x\right)$ et $\cos\left(n\frac{2\pi}{T}x\right)$ avec $n \in \mathbb{N}$ de périodes $\frac{T}{n}$ (et donc aussi de T)
+    On a les fonctions $\sin\left(n\frac{2\pi}{T}x\right)$ et $\cos\left(n\frac{2\pi}{T}x\right)$ avec $n \in \mathbb{N^*}$ de périodes $\frac{T}{n}$ (et donc aussi de T)
 \end{example}
 
 \begin{definition}
@@ -110,11 +110,11 @@ Soit $f$ une fonction $T$-périodique. On pose $\int_T f(t)dt = \int_a^b f(t)dt$
     Si $a = c$, cela est évident. Supposons donc que $a < c$, on a alors 
 \begin{align*}
     \int_a^b f(t)dt 
-    &= \int_a^cf(t)dt + \int_c^b f(t)dt  \\
+    &= \int_a^cf(t)dt + \int_c^b f(t)dt \text{ (relation de Chasles)} \\
     &= \int_b^d f(t)dt + \int_c^b f(t)dt \text{ (on pose }x = t + T\text{ dans la première intégrale)} \\
     &= \int_{a+T}^{c+T} f(x-T)dx + \int_c^b f(t)dt\\
-    &= \int_b^d f(x)dx + \int_c^b f(t)dt \\
-    &= \int_c^d f(t)dt \text{ (où la quatrième égalité vient de la périodicité de }f\text{)}
+    &= \int_b^d f(x)dx + \int_c^b f(t)dt \text{ (par }T\text{-périodicité de }f)\\
+    &= \int_c^d f(t)dt 
 \end{align*}
 
 Si $a > c,$ la méthode est analogue.
@@ -135,7 +135,7 @@ car par construction, $[a+kT,b+kT] \cap [c,d] \neq \emptyset.$
 \end{remarque}
 
 \begin{theoreme}(Formule d'Euler)
-On a $e^{ix} = \cos(x) + i\sin(x) $ $ \forall x\in \mathbb{R}.$\\
+$e^{ix} = \cos(x) + i\sin(x) $ $ \forall x\in \mathbb{R}.$\\
 Ce théorème peut se montrer grâce aux séries de Taylor de l'exponentielle ainsi que celles du sinus et du cosinus.
 \end{theoreme}
 
@@ -159,7 +159,7 @@ $\forall x \in \mathbb{R}, $ on a $\cos(x) = \frac{e^{ix}+e^{-ix}}{2} $ et $\sin
     Une fonction $f\in C^k(I)$ est aussi appelé une fonction \textbf{de classe $C^k(I)$}
 \end{remarque}
 \subsection{Polynômes trigonométriques}
-Ces préliminaires étant terminés, nous definissons maintenant ce qu'est un polynôme trigonométrique et quelques propriétés qu'ils ont.
+Ces préliminaires étant terminés, nous definissons maintenant ce qu'est un polynôme trigonométrique ainsi que ses propriétés.
 \begin{definition}
     On définit un polynôme trigonométrique comme étant une série de sinus et de cosinus de fréquence entières de $\frac{1}{T}$. \\
     On pose 
@@ -173,8 +173,8 @@ Remarquons que si $P$ est une somme finie de fonctions trigonométriques, alors 
 \end{remarque}
 
 \begin{example}
-On a $P(x) = 7\cos(x) + 5\cos(2x) + 6 \sin(2x)$ qui est trigonométrique. \\
-On remarque que $7 \cos(x) = \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix}, 5\cos(2x) = \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix}, 6\sin(2x) = -i(3e^{2ix} - 3e^{-2ix}) $.\\
+Soit $P$ un polynôme trigonométrique défini par $P(x) = 7\cos(x) + 5\cos(2x) + 6 \sin(2x)$ qui est trigonométrique. \\
+On remarque que $7 \cos(x) = 7 \cdot \frac{e^{ix}+e^{-ix}}{2} = \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix},$ $5\cos(2x) = 5 \cdot \frac{e^{2ix}+e^{-2ix}}{2} = \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix},$ $6\sin(2x) = 6 \cdot \frac{e^{2ix}-e^{-2ix}}{2i} = -i(3e^{2ix} - 3e^{-2ix}) $.\\
 \begin{align*} 
 \text{Cela implique que } P(x) &= \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix} + \frac{5}{2}e^{2ix} + \frac{5}{2} e^{-2ix} -i\left(3e^{2ix} - 3e^{-2ix}\right)
 \\ &= \frac{7}{2}e^{ix} + \frac{7}{2} e^{-ix} + \left(\frac{5}{2} - 3i\right)e^{2ix} + \left(\frac{5}{2} + 3i\right)e^{-2ix}.
@@ -192,7 +192,8 @@ $$P(x) = \sum_{n = -\infty}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}$$
 \end{proposition}
 
 \begin{proof}
-    Comme $P$ est un polynôme trigonométrique, $P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) = a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right).$ \\
+    Comme $P$ est un polynôme trigonométrique, 
+    $$P(x) = \sum_{n= 0}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) = a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right).$$
     Par les formes exponentielles du sinus et du cosinus, on en déduit que
     \begin{align*}
       P(x) &= a_0 + \sum_{n= 1}^{\infty} a_n \cos\left(n\frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right) \\
@@ -219,7 +220,7 @@ Remarquons que $c_{-n} = \overline{c_n}, $ $\forall n \in \mathbb{N^*}.$
     Avec $a_0 = c_0$, $a_n = c_n + c_{-n}$ et $b_n = i(c_n - c_{-n})$ avec $n >$ 0. 
 
 \begin{proof}
-    Par le théorème 2, on sait que $c_n = a_n - ib_n$,  $c_{-n} = a_n + ib_n$ et $c_0 = a_0$ $\forall n > 0$. On peut facilement vérifier que $a_n = c_n + c_{-n}$ et $b_n = i(c_n-c_{-n})$ est la seule solution.
+    Par la \textit{proposition 2}, on sait que $c_n = a_n - ib_n$,  $c_{-n} = a_n + ib_n$ et $c_0 = a_0$ $\forall n > 0$. On peut facilement vérifier que $a_n = c_n + c_{-n}$ et $b_n = i(c_n-c_{-n})$ est la seule solution.
 \end{proof}
 \end{corrolaire}
 
@@ -229,13 +230,14 @@ Remarquons que $c_{-n} = \overline{c_n}, $ $\forall n \in \mathbb{N^*}.$
 avec $c_n = \frac{1}{T} \int_T P(t) e^{-i \frac{2\pi nt}{T}}dt.$
 
 \begin{proof}
-Par la proposition 2, on sait qu'il existe des constantes $c_n$ $, n \in \mathbb{Z}$ telles que $P(x) = \sum_{n = -\infty}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}.$ On calcule que :
+Par la proposition 2, on sait qu'il existe des constantes $c_n \in \mathbb{C}$ $, n \in \mathbb{Z}$ telles que $P(x) = \sum_{n = -\infty}^{\infty} c_n e^{2 \pi i \frac{n}{T}x}.$ On calcule que :
 \begin{align*}
 \int_T P(t)e^{-2\pi i \frac{n}{T}t}dt &= \int_T \sum_{k = -\infty}^{\infty} c_k e^{2 \pi i \frac{k}{T}t} e^{-2 \pi i \frac{n}{T} t} dt \\
-&= \sum_{k = -\infty}^{\infty} c_k \int_T e^{2 \pi i \frac{k-n}{T}t} dt.\\
-&= c_n \cdot T
+&= \sum_{k = -\infty}^{\infty} c_k \int_T e^{2 \pi i \frac{k-n}{T}t} dt.
 \end{align*}
-Puisque, si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi i (k-n)} e^{2\pi i \frac{k-n}{T}t} \right]_{-T/2}^{T/2}  =  \frac{T}{2 \pi i (k-n)}\left(e^{ \pi i (k-n)} - e^{\pi i (n-k)}\right) = 0.$ Si $k = n,$ alors l'intégale vaut $ \int_{-T/2}^{T/2} dt = T. $\\
+Si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi i (k-n)} e^{2\pi i \frac{k-n}{T}t} \right]_{-T/2}^{T/2}  =  \frac{T}{2 \pi i (k-n)}\left(e^{ \pi i (k-n)} - e^{\pi i (n-k)}\right) = 0.$ 
+Et si $k = n,$ alors l'intégale vaut $ \int_{-T/2}^{T/2} dt = T. $
+Ainsi cette dernière intégrale prendra la valeur de $c_n \cdot T.$
 \textit{Remarque} : l'intervertion série-intégrale peut se faire puisque la série converge uniformément.
 \end{proof}
 
@@ -246,7 +248,7 @@ Puisque, si  $k \neq n,$ cette dernière intégrale vaut $\left[ \frac{T}{2 \pi 
     $$P(x) = \sum_{n = 0}^\infty a_n \cos\left(n \frac{2\pi}{T}x\right) + b_n \sin\left(n \frac{2\pi}{T}x\right)$$
     Avec $a_n = \frac{2}{T}\int_T P(t)\cos\left(n\frac{2\pi}{T}t\right)dt $ et $b_n = \frac{2}{T} \int_T P(t)\sin\left(n\frac{2\pi}{T}t\right)dt$.
 \begin{proof}
-    Par le théorème 3, on sait que $P(x) = \sum_{n = -\infty}^\infty c_n e^{in\frac{2\pi}{T}t}$ avec $c_n = \frac{1}{T}\int_TP(t)e^{-n\frac{2\pi}{T}t}dt.$ 
+    Par la \textit{proposition 3}, on sait que $P(x) = \sum_{n = -\infty}^\infty c_n e^{in\frac{2\pi}{T}t}$ avec $c_n = \frac{1}{T}\int_TP(t)e^{-n\frac{2\pi}{T}t}dt.$ 
     On sait aussi que $\forall n \in \mathbb{N^*}, a_n = c_n + c_{-n}$ et $b_n = i(c_n-c_{-n})$ par le corrolaire 2.
     On a donc :
     \begin{align*}
@@ -276,7 +278,7 @@ Tous les résultats vus jusqu'à présent sont généralisables pour des fonctio
 \end{definition}
 
 \begin{remarque}
-    Certains auteurs utilisent $a_0 = \frac{2}{T} \int_T f(t)dt$ pour garder le facteur 2 afin d'utiliser $a_n = \frac{2}{T}\int_T f(t)\cos\left(n \frac{2\pi}{T}t\right)dt $ $\forall n \in \mathbb{N}.$
+    Certains auteurs utilisent $a_0 = \frac{2}{T} \int_T f(t)dt$ pour garder le facteur 2 afin d'utiliser $a_n = \frac{2}{T}\int_T f(t)\cos\left(n \frac{2\pi}{T}t\right)dt, $ $\forall n \in \mathbb{N}.$
 \end{remarque}
 
 On pourait se dire que quelque soit la fonction $f(x)$, la série $F_N(x)$ converge vers $f(x)$ sur l'intervalle $[a,b]$ mais ce n'est pas forcément le cas.
@@ -285,11 +287,11 @@ On pourait se dire que quelque soit la fonction $f(x)$, la série $F_N(x)$ conve
     Une fonction $f:\mathbb{R}\rightarrow \mathbb{R}$ est dite \textbf{régulière par morceaux} si pour tout $a,b \in \mathbb{R},$ $ a<b.$ Il existe une partition :
     $$a = a_0 < a_1 < ... < a_n = b$$
     telle que 
-    $$f \in C^1(]a_i, a_{i+1}[),\text{ } \forall \text{ }0\leq i \leq n-1, \text{ et } \exists M \in \mathbb{R} \text{ tel que } \lvert f'(x)\lvert \leq M, \forall x \in ]a_i,a_{i+1}[, \text{ } \forall \text{ } 0\leq i \leq n-1. $$
+    $$f \in C^1(]a_i, a_{i+1}[),\text{ } \forall \text{ }0\leq i \leq n-1, \text{ et } \exists \text{ } M \in \mathbb{R} \text{ tel que } \lvert f'(x)\lvert \leq M, \forall x \in ]a_i,a_{i+1}[, \text{ } \forall \text{ } 0\leq i \leq n-1. $$
 \end{definition}
 
 \begin{example}
-    Cette définition peut , nous allons donc faire un exemple.
+    Cette définition peut sembler assez abstraite, nous allons donc faire un exemple.
     Soit $f: [1,4]\rightarrow \mathbb{R} $ définie par $f(x) = \left\{
     \begin{array}{lll}
          x^3-3x+3 & \mbox{si } 1\leq x \leq 2 \\  
@@ -315,9 +317,9 @@ L'un des théorèmes les plus fondamentaux de l'analyse de Fourier est le théor
     $$Ff(x_0) = \lim_{\epsilon \rightarrow 0} \frac{f(x_0+\epsilon)+f(x_0-\epsilon)}{2}.$$
     En particulier si $f$ est continue en $x_0$, on a 
     $$Ff(x_0) = f(x_0).$$ 
-    Si de plus, $f$ est continue sur $\mathbb{R}$, alors $Ff(x)$ converge uniformément vers $f(x)$ i.e. $\forall \epsilon > 0, $ $\exists N \in \mathbb{N} $ tel que $\lvert F_nf(x)-f(x) \lvert \leq \epsilon.$ $ \forall x \in \mathbb{R}, \forall n \geq N. $ 
+    Si de plus, $f$ est continue sur $\mathbb{R}$, alors $Ff(x)$ converge uniformément vers $f(x)$ c'est-à-dire $\forall \epsilon > 0, $ $\exists N \in \mathbb{N} $ tel que $\lvert F_nf(x)-f(x) \lvert \leq \epsilon.$ $ \forall x \in \mathbb{R},$ $ \forall n \geq N. $ 
 \end{theoreme}
-Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons plus que des fonctions qui sont $2\pi-$périodiques. Mais tous les résultats énoncés sont généralisables à une quelconque période.
+Dans la suite de ce travail, pour des raisons de convenance, nous ne traiterons plus que des fonctions qui sont $2\pi-$périodiques. Mais tous les résultats énoncés sont généralisables à une quelconque période.
 \begin{propriete}
     Soit $f$ une fonction $2\pi$-périodique, régulière par morceaux. Alors $Ff$ est aussi $2\pi-$périodique et :\\
     i) Si $f$ est paire, alors $b_n = 0,$ $ \forall n \in \mathbb{N^*}.$\\
@@ -330,7 +332,7 @@ Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons
     $$Ff(x)=f(x)=f(x+2\pi)=Ff(x+2\pi)$$
     et donc $Ff$ est $2\pi-$périodique.\\
     Pour le i) et le ii), le raisonnement est analogue donc nous ne montrerons que le ii). \\
-    Comme $f$ est impaire, on a $f(-x)= -f(x),$ $\forall x \in \mathbb{R}.$ Comme le cosinus est pair et le sinus impair,
+    Comme $f$ est impaire, on a $f(-x)= -f(x),$ $\forall x \in \mathbb{R}.$ Comme le cosinus est paire et le sinus impaire,
     \begin{align*}
         f(-x) &= Ff(-x)\\ 
         &= a_0 + \sum_{n=1}^\infty a_n\cos\left(n(-x)\right)+b_n\sin\left(n(-x)\right)\\
@@ -345,7 +347,7 @@ Dans la suite de ce travail, pour des raisons de convenience, nous ne traiterons
 \end{remarque}
 
 \begin{propriete}(Différentiation terme par terme)
-    Soit $f$ une fonction $2\pi-$périodique continue,telle que $f'$ soit régulière par morceaux. Alors la dérivée de $Ff$ converge sur $\mathbb{R}$ et on peut dériver terme par terme, i.e.
+    Soit $f$ une fonction $2\pi-$périodique continue,telle que $f'$ soit régulière par morceaux. Alors la dérivée de $Ff$ converge sur $\mathbb{R}$ et on peut dériver terme par terme, c'est-à-dire
     $$f'(x)= \sum_{n=1}^{\infty}n\left(b_n\cos\left(nx\right)-a_n\sin\left(nx\right)\right)$$
 \end{propriete}
 \begin{proof}
@@ -393,7 +395,7 @@ Ce dernier résultat est généralisable dans le cas où la $n$-ième dérivée 
 \end{proof}
 
 \subsection{Identité de Parseval}
-Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval. Il permet d'évaluer une série de ses coefficients de Fourier et de le relier par rapport à son intégrale sur la période. Comme nous le verrons plus tard, il est facilement utilisable et permet par exemple de trouver aisément la valeur exacte d'une série qui a l'air au premier abord assez "complexe". Mais avant d'y arriver on a besoin de trois faits sur les fonctions sinus et cosinus:
+Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval\footnote{Marc-Antoine Parseval (1755-1836): mathématicien français}. Il permet d'évaluer une série de ses coefficients de Fourier et de le relier par rapport à son intégrale sur la période. Comme nous le verrons plus tard, il est facilement utilisable et permet par exemple de trouver aisément la valeur exacte d'une série qui a l'air au premier abord assez "complexe". Mais avant d'y arriver on a besoin de trois faits sur les fonctions sinus et cosinus:
 \begin{proposition}
       
     Soient $m,n \in \mathbb{N^*},$ alors on a :
@@ -423,7 +425,7 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
   Donc dans tous les cas elle vaut 0.
    
 \end{proof}
-\begin{theoreme}(Identité de Parseval\footnote{Marc-Antoine Parseval (1755-1836): mathématicien français})
+\begin{theoreme}(Identité de Parseval)
     Soit $f$ une fonction, $2\pi-$périodique continue, réguilière par partie. 
     Alors on a :
     $$\frac{1}{2\pi}\int_0^{2\pi} f(t)^2dt= a_0^2 + \frac{1}{2}\sum_{n=1}^{\infty} a_n^2+b_n^2 = \frac{1}{2}\sum_{n=-\infty}^{\infty}\lvert c_n\lvert^2.$$
@@ -488,7 +490,7 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
          0 & \mbox{si } x= -1 \text{ ou si } x=1
         \end{array} 
     \right. 
-        $étendu sur $\mathbb{R}$ par $2\pi-$périodicité i.e. $f(x+2\pi) = f(x), $ $\forall x \in \mathbb{R}.$\\
+        $étendu sur $\mathbb{R}$ par $2\pi-$périodicité c'est-à-dire $f(x+2\pi) = f(x), $ $\forall x \in \mathbb{R}.$\\
     Comme $f$ est continue par morceaux, on calcule ses coefficients de Fourier :\\
     \begin{align*}
     a_0 &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)dx\\
@@ -506,7 +508,7 @@ Un théorème extrêmement pratique en analyse de Fourier est celui de Parseval.
         &= \frac{1}{\pi}\left( \frac{-\sin(-n)}{n}+ \underbrace{\frac{\sin(n\pi)}{n}}_{= 0} + \frac{\sin(n)}{n} - \frac{\sin(-n)}{n} -  \underbrace{\frac{\sin(n\pi)}{n}}_{= 0} +\frac{\sin(n)}{n}\right) \\
         &= \frac{4\sin(n)}{n\pi}.
     \end{align*}
-    Comme $f$ est régulière par morceaux, elle est donc égale à sa série de Fourier i.e. :
+    Comme $f$ est régulière par morceaux, elle est donc égale à sa série de Fourier c'est-à-dire :
     $$f(x) = \frac{1}{\pi}(2-\pi) + \frac{4}{\pi}\sum_{n=1}^{\infty} \frac{\sin(n)}{n} \cos(nx). $$
     En particulier, pour $x = 0,$ on obtient :\\
     $$1 = f(0) = \frac{1}{\pi}(2-\pi) + \frac{4}{\pi}\sum_{n=1}^{\infty} \frac{\sin(n)}{n},$$
@@ -531,54 +533,8 @@ Maintenant que nous savons exprimer des fonctions périodiques comme séries de 
 \end{definition}
 
 \begin{definition}
-    Soit $\mathbb{K}$ un corps. Alors un $\mathbb{K}$-espace vectoriel est un ensemble $E$ muni d'une addition  $+: E \times E \rightarrow E$ tel que (E, +) soit un groupe abélien, mais aussi que $E$ soit muni d'une multiplication par K à gauche i.e. $\cdot : \mathbb{K} \times E \rightarrow E$ qui soit distributive par rapport à l'addition, admet un élément neutre et une multiplication mixte. C'est-à-dire $\forall u,v \in E, \forall \lambda,$ $ \mu \in \mathbb{K},$ on a 
-    \begin{align*}
-        1)& \text{ }\lambda \cdot(u+v) = \lambda \cdot u + \lambda \cdot v\\
-        2)&\text{ }(\lambda + \mu ) \cdot u = \lambda \cdot u + \mu \cdot u\\
-        3)&\text{ } (\lambda \mu ) \cdot u = \lambda (\mu \cdot u)\\
-        4)&\text{ } 1 \cdot u = u
-    \end{align*}
-    Les éléments de $E$ sont appelés vecteurs et ceux de $\mathbb{K}$ des scalaires.
-\end{definition}
-
-Cette définition peut sembler très théorique mais elle signifie que l'on peut faire de l'arithmétique sur $E$ sans avoir de potentiels problèmes.
-
-\begin{proposition}
-    L'ensemble $L^p(\mathbb{R})$ est un $\mathbb{R}$-espace vectoriel
-\end{proposition}
-
-\begin{proof}
-    On remarque que $f \equiv 0 $ est de classe $L^p$ qui est l'élément neutre de l'addition. Soient maintenant $f,g,h \in L^p(\mathbb{R})$. On a assez facilement ces propriétés :
-    \begin{align*}
-        1)& \text{ } f + (g + h) = (f + g) + h\\
-        2)& \text{ } 0 + f = f + 0 = f\\
-        3)& \text{ } f + (-f) = (-f) + f = 0
-    \end{align*}
-    Pour montrer que $(f+g) \in L^p(\mathbb{R})$, on a :
-    \begin{align*}
-        \lvert\lvert f + g \lvert \lvert_p &= \left(\int_{-\infty}^{\infty} \lvert (f+g)(t) \lvert^p dt\right)^{\frac{1}{p}}\\
-        &= \left(\int_{-\infty}^{\infty} \lvert f(t) + g(t)\lvert ^pdt\right)^{\frac{1}{p}}\\
-        &\leq  \left( \int_{-\infty}^{\infty} \lvert f(t) \lvert ^p dt \right)^{\frac{1}{p}} + \left( \int_{-\infty}^{\infty} \lvert g(t) \lvert ^p dt \right)^{\frac{1}{p}}  \\
-        &=  \lvert\lvert f \lvert \lvert_p +  \lvert\lvert g \lvert \lvert_p
-    \end{align*}
-    L'inégalité ici utilisée s'appelle l'inégalité de Minkowski\footnote{Hermann Minkowski (1864-1909): mathématicien russe}, cela montre donc que $(E, +)$ est un groupe abélien.\\
-    Soient maintenant $\lambda, \mu \in \mathbb{R}$, alors on a :
-    \begin{align*}
-        1)& \text{ } 1 \cdot f = f\\
-        2)& \text{ } (\lambda + \mu) \cdot f =  \lambda \cdot f + \mu \cdot f\\
-        3)& \text{ } \lambda \cdot (f + g) = \lambda \cdot f  + \lambda \cdot g\\
-        4)& \text{ } \lambda (\mu \cdot f) = (\lambda \mu) \cdot f
-    \end{align*}
-    Pour voir que la multiplication reste dans $L^p(\mathbb{R})$, on a : $\lvert\lvert \lambda f \lvert \lvert_p = \lvert \lambda \lvert \cdot \lvert\lvert f \lvert \lvert_p < \infty.$
-    Cela termine la preuve.
-\end{proof}
-
-Dans le reste de ce chapitre, on ne considérera que des fonctions de classe $L^1$
-et $L^2$. 
-
-\begin{definition}
     Soient $f,g$ deux fonctions réelles continues par morceaux de classes $L^1$, alors on définit le produit de convolution par :
-    $$(f*g)(x):= \int_{-\infty}^{\infty}f(x-t)g(t)dt = \int_{-\infty}^{\infty} g(x-t)f(t)dt = (g*f)(x)$$
+    $$(f*g)(x):= \int_{-\infty}^{\infty}f(x-t)g(t)dt = \int_{-\infty}^{\infty} g(x-t)f(t)dt = (g*f)(x).$$
 \end{definition}
 
 \subsection{Définition}
@@ -595,11 +551,11 @@ et $L^2$.
 \subsection{Propriétés}
 
 \begin{propriete}
-La transformée de Fourier est linéaire, i.e.
-$$\forall \lambda, \mu \in \mathbb{R}, \forall f,g \in L^1(\mathbb{R}), \mathcal{F}(\lambda f + \mu g)(\alpha) = \lambda \mathcal{F}(f)(\alpha) + \mu \mathcal{F}(g)(\alpha)$$
+La transformée de Fourier est linéaire, c'est-à-dire
+$$\forall \lambda, \mu \in \mathbb{R},\text{ } \forall f,g \in L^1(\mathbb{R}),\text{ } \mathcal{F}(\lambda f + \mu g)(\alpha) = \lambda \mathcal{F}(f)(\alpha) + \mu \mathcal{F}(g)(\alpha).$$
 \end{propriete}
 
-Cette propriété vient du fait que $L^1(\mathbb{R})$ est un $\mathbb{R}$-espace vectoriel.
+Cette propriété se voit immédiatement par linéarité de l'intégrale.
 
 \begin{propriete}
     Soit $f$ une fonction réelle continue par morceaux de classe $L^1$, alors sa transformée de Fourier est continue et 
@@ -625,7 +581,7 @@ La continuité vient du fait que un petit changement en $\alpha$ implique un pet
     qui est le résultat voulu. A noter que le 0 entre crochet vient du fait que $f^{(n-1)}$ est de classe $L^1$ et donc tend vers 0 à l'infini et que l'égalité vient de l'hypothèse de récurrence.
 \end{proof}
 \begin{propriete}(Dérivation de la transformée)
-    Soit $f$ une fonction réelle continue par morceaux de classe $L^1$ et que $h_n(x) := x^n f(x), n \in \mathbb{N}$ est de classe $L^1$, alors on a :
+    Soit $f$ une fonction réelle continue par morceaux de classe $L^1$ et que $h_n(x) := x^n f(x),$ $ n \in \mathbb{N}$ est de classe $L^1$, alors on a :
     $$\mathcal{F}(h_n)(\alpha) = i^n \frac{d^n}{d\alpha^n}\left( \hat{f}(\alpha)\right).$$
 \end{propriete}
 
@@ -642,7 +598,7 @@ La continuité vient du fait que un petit changement en $\alpha$ implique un pet
 \end{proof}
 
 \begin{propriete} (Décalage et amplification)
-    Soit $f$  une fonction réelle continue par morceaux de classe $L^1$, et soient $a,b \in \mathbb{R}, a\neq 0$, alors la fonction $g(x) := e^{-ibx}f(ax)$ satisfait :
+    Soit $f$  une fonction réelle continue par morceaux de classe $L^1$, et soient $a,b \in \mathbb{R},$ $ a\neq 0$, alors la fonction $g(x) := e^{-ibx}f(ax)$ satisfait :
     $$\mathcal{F}(g)(\alpha) = \frac{1}{\lvert a \lvert}\mathcal{F}(f)\left(\frac{\alpha +b}{a}\right).$$
 \end{propriete}
 
@@ -696,17 +652,33 @@ $$\int_{-\infty}^{\infty}f(t)^2dt=\int_{-\infty}^{\infty}\left\lvert\hat{f}(\alp
 
 Tout comme pour les propositions sur les séries de Fourier, on peut se demander ce qu'il se passe si les fonctions sont paires ou impaires.
 
-\begin{proposition}
+\begin{propriete}
 Soit $f$ une fonction réelle, paire, continue par morceaux de classe $L^1$. Alors sa transformée de Fourier peut se calculer comme :
 $$\mathcal{F}(f)(\alpha) = \sqrt{\frac{2}{\pi}}\int_0^{\infty}f(t)\cos(\alpha t)dt.$$
-\end{proposition}
+\end{propriete}
 
-\begin{proposition}
+\begin{propriete}
 Soit $f$ une fonction réelle, impaire, continue par morceaux de classe $L^1$. Alors sa transformée de Fourier peut se calculer comme :
 $$\mathcal{F}(f)(\alpha) = i\sqrt{\frac{2}{\pi}}\int_0^{\infty}f(t)\sin(\alpha t)dt.$$
-\end{proposition}
+\end{propriete}
 
-Nous n'on ferons pas les preuve étant donné que ce sont les même procédés que pour les séries de fonctions paires (ou impaires respectivement) (voir \textit{Propriété 1}).
+Nous ne ferons que la preuve de la Propriété 11, la 12 ayant strictement les mêmes idées. 
+
+\begin{proof}
+    Comme $f$ est une fonction paire de classe $L^1$, on peut écrire :
+    \begin{align*}
+        \mathcal{F}(f)(\alpha) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(t)e^{-i\alpha t}dt\\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(-t)e^{-i\alpha t}dt \text{ (on pose }-t = u,\text{ } -dt = du)\\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(u)e^{i\alpha u}du.
+    \end{align*}
+    En somant les deux cotés puis en divisant par $2$, on obtient :
+    \begin{align*}
+    \mathcal{F}(f)(\alpha)&= \frac{1}{\sqrt{2\pi}}\cdot \frac{1}{2}\left(\int_{-\infty}^{\infty}f(t)(e^{i\alpha t}+e^{-i \alpha t})dt\right)\\
+    &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(t)\cos(\alpha t)dt\\
+    &= \sqrt{\frac{2}{\pi}}\int_0^{\infty}f(t)\cos(\alpha t)dt
+    \end{align*}
+    La dernière égalité vient de la parité de la fonction intégrée sur un intervalle symétrique en 0.
+\end{proof}
 
 \subsection{Exemple}
 
@@ -721,7 +693,7 @@ Nous n'on ferons pas les preuve étant donné que ce sont les même procédés q
     et
     \begin{align*}
      \int_{-\infty}^{\infty}f(t)^2dt &= \int_{-\infty}^{\infty} \cos(3t)^2 \cdot e^{-2\lvert t \lvert}dt\\
-     &\leq \int_{-\infty}^{\infty} e^{-2t}dt\\
+     &\leq 2\int_0^{\infty} e^{-2t}dt\\
      &= 1.
     \end{align*}
 On calcule donc $\hat{f}(\alpha)$:
@@ -768,8 +740,8 @@ Maintenant que nous avons l'idée de la transformée de Fourier, on se demande c
 \end{definition}
 
 \begin{definition}
-    Soit $O\in \mathbb{C}$ un ouvert, alors on dit que $f : O \in \mathbb{C}$ est \textbf{holomorphe} si, $\forall z_0 \in O$, $f$ est dérivable en $z_0$ i.e. 
-    $$\lim_{z \rightarrow }\frac{f(z)-f(z_0)}{z-z_0}$$
+    Soit $O\in \mathbb{C}$ un ouvert, alors on dit que $f : O \in \mathbb{C}$ est \textbf{holomorphe} si, $\forall z_0 \in O$, $f$ est dérivable en $z_0$ c'est-à-dire 
+    $$\lim_{z \rightarrow z_0}\frac{f(z)-f(z_0)}{z-z_0}$$
     existe et est finie. 
 \end{definition}
 
@@ -779,7 +751,7 @@ Maintenant que nous avons l'idée de la transformée de Fourier, on se demande c
     Soit $f : \mathbb{R_+} \rightarrow \mathbb{R} $ une fonction continue par morceaux (étendu à 0 sur $\mathbb{R_{-}^*}$). Soit maintenant $\gamma_0 \in \mathbb{R}$ tel que :
     $$\int_{-\infty}^{\infty}\lvert f(t) \lvert e^{-\gamma_0 t}dt < \infty,$$
     alors on appelle \textbf{transformée de Laplace} la fonction 
-    $$\mathcal{L}(f)(z) = F(z) := \int_0^\infty f(t)e^{-tz}, t\in \overline{O}$$ 
+    $$\mathcal{L}(f)(z) = F(z) := \int_0^\infty f(t)e^{-tz},\text{ } t\in \overline{O}$$ 
     où $O:= \{z\in \mathbb{C}| \mathcal{R}(z)>\gamma_0\}, \overline{O} = \{z\in \mathbb{C} | \mathcal{R}(z)\geq \gamma_0\}.$
 \end{definition}
 
@@ -797,32 +769,32 @@ Pour le reste de cette partie, on gardera les mêmes hypothèses sur $f,\gamma_0
 \end{propriete}
 
 \begin{propriete}
-    Plus généralement si $g(t):=t^nf(t), n \in \mathbb{N}$, alors :
+    Plus généralement si $g(t):=t^nf(t),\text{ } n \in \mathbb{N}$, alors :
     $$\mathcal{L}(g)(z) = (-1)^nF^{(n)}(z).$$
 \end{propriete}
 
 \begin{propriete}
-    Tout comme la transformée de Fourier, la transformée da Laplace est linéaire i.e. 
-    $$\forall a,b \in \mathbb{R}, \mathcal{L}(af+bg)(z) = a\mathcal{L}(f)(z)+b\mathcal{L}(g)(z).$$ Avec $g$ satisfaisant les mêmes hypothèses que $f$.
+    Tout comme la transformée de Fourier, la transformée de Laplace est linéaire c'est-à-dire 
+    $$\forall a,b \in \mathbb{R},\text{ } \mathcal{L}(af+bg)(z) = a\mathcal{L}(f)(z)+b\mathcal{L}(g)(z).$$ Avec $g$ satisfaisant les mêmes hypothèses que $f$.
 \end{propriete}
 
 \begin{propriete}(Transformée de la dérivée)
     Si maintenant $f$ est de classe $C^1$ sur $\mathbb{R}$, et que $f'$ satisfait les mêmes hypothèses que $f$ alors :
-    $$\mathcal{L}(f')(z)= z\mathcal{L}(f)(z)-f(0), z \in O.$$
+    $$\mathcal{L}(f')(z)= z\mathcal{L}(f)(z)-f(0),\text{ } z \in O.$$
 \end{propriete}
 Par rapport à la transformée de Fourier, ce "$-f(0)$" provient de l'intégration sur $\mathbb{R_+}$ et non pas sur $\mathbb{R}.$
 
 \begin{propriete}
     Si maintenant $f$ est de classe $C^n$, et que $f^{(k)}$ satisfait les mêmes hypothèses que $f$ pour $1\leq k \leq n,$ alors on peut montrer par récurrence (sur $n$) que:
-    $$\mathcal{L}(f^{(n)})(z) = z^n\mathcal{L}(f)(z) - \sum_{k=0}^{n-1}z^kf^{(n-k-1)}(0), z \in O.$$
+    $$\mathcal{L}(f^{(n)})(z) = z^n\mathcal{L}(f)(z) - \sum_{k=0}^{n-1}z^kf^{(n-k-1)}(0),\text{ } z \in O.$$
 \end{propriete}
- Comparé à la transformée de Fourier, celle de Laplace a du sens a être intégré.
+ Comparé à la transformée de Fourier, celle de Laplace a du sens a être intégrée.
  
 \begin{propriete}
     Suposons de plus que $f$ est continue, définissons maintenant une fonction  $\varphi$ continue définie par :
     $$\varphi(t) := \int_0^tf(s)ds,$$
     alors on a :
-    $$\mathcal{L}(\varphi)(z)= \frac{\mathcal{L}(f)(z)}{z}, z \in O.$$
+    $$\mathcal{L}(\varphi)(z)= \frac{\mathcal{L}(f)(z)}{z},\text{ } z \in O.$$
 \end{propriete}
 
 \begin{proof}
@@ -836,19 +808,19 @@ Par rapport à la transformée de Fourier, ce "$-f(0)$" provient de l'intégrati
 
 \begin{propriete}(Décalage et amplification)
     Soient $a,b \in \mathbb{R}, a > 0,$ et soit $g(t):= e^{-bt}f(at)$, alors :
-    $$\mathcal{L}(g)(z) = \mathcal{L}(f)\left(\frac{z+b}{a}\right), \mathcal{R}\left(\frac{z+b}{a}\right) \geq \gamma_0.$$
+    $$\mathcal{L}(g)(z) = \mathcal{L}(f)\left(\frac{z+b}{a}\right), \text{ } \mathcal{R}\left(\frac{z+b}{a}\right) \geq \gamma_0.$$
 \end{propriete}
 
 \begin{propriete}
     Soit $g$ une fonction satisfaisant les mêmes hypothèses que $f$, alors :
-    $$\mathcal{L}(f*g)(z)= \mathcal{L}(f)(z)\cdot \mathcal{L}(g)(z), z \in O.$$
+    $$\mathcal{L}(f*g)(z)= \mathcal{L}(f)(z)\mathcal{L}(g)(z),\text{ } z \in O.$$
 \end{propriete}
 
 \begin{propriete}
     Supposons $f$ continue ainsi que sa transformée de Laplace, F, qui satisfait :
     $$\int_{-\infty}^{\infty}\lvert F(\gamma +is)\lvert ds,$$
     avec $\gamma \in \mathbb{R}$, alors :
-    $$f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(\gamma+is)e^{(\gamma+is)t}ds, t \in \mathbb{R}.$$
+    $$f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(\gamma+is)e^{(\gamma+is)t}ds,\text{ } t \in \mathbb{R}.$$
 \end{propriete}
 \begin{remarque}
     
@@ -870,17 +842,17 @@ Cette dernière intégrale peut aussi s'écrire : $f(t) = \mathcal{L}^{-1}(F)(t)
     On a donc $\mathcal{L}(f)(z) = \frac{1}{a} - \frac{z^2}{a^2}\mathcal{L}(f)(z).$ et on en déduit :$\mathcal{L}(f)(z)\underbrace{\left(1+\frac{z^2}{a^2}\right)}_{=\frac{a^2+z^2}{a^2}} = \frac{1}{a}$ pour conclure que :
     $$\mathcal{L}(f)(z) = \frac{a}{a^2+z^2}, \mathcal{R}(z)>0.$$
 
-    Comme on a $f'(t) = a \cdot g(t),$ par les \textit{propriété 13} et \textit{14}:
+    Comme on a $f'(t) = a \cdot g(t),$ par les \textit{propriété 15} et \textit{16}:
     \begin{align*}
         \mathcal{L}(g)(z) &= \mathcal{L}\left(\frac{1}{a}f'\right)(z)\\
         &= \frac{1}{a}(z\mathcal{L}(f)(z)-\underbrace{f(0)}_{=0})\\
         &= \frac{1}{a}\cdot \frac{az}{a^2+z^2}\\
-        &= \frac{z}{a^2+z^2}, \mathcal{R}(z) >0.
+        &= \frac{z}{a^2+z^2},\text{ } \mathcal{R}(z) >0.
     \end{align*}
 \end{example}
 
 \begin{example}
-    Calculons la transformée de Laplace de $f_n(t) := t^n, n \in \mathbb{N}.$\\
+    Calculons la transformée de Laplace de $f_n(t) := t^n,$ $ n \in \mathbb{N}.$\\
     Comme pour l'autre exemple, $f_n$ satisfait clairment les hypothèse et $\gamma_0 > 0$ est aussi une abscisse de convergence. On admet que $\mathcal{L}(f_n)(z) = \frac{n!}{z^{n+1}}.$ Pour le montrer, on procède par récurrence : pour $n=0,$ le calcul est direct :
     $$\mathcal{L}(f_0)(z) = \int_0^{\infty}e^{-tz}dt = \left[\frac{-1}{z}e^{-tz}\right]_0^{\infty} = \frac{-1}{z}(0-(-1)) = \frac{1}{z}. $$
     On suppose que cela est vrai jusqu'à l'ordre $n-1,$ alors on a :
@@ -898,8 +870,6 @@ Cette dernière intégrale peut aussi s'écrire : $f(t) = \mathcal{L}^{-1}(F)(t)
 
 Avant de voir des problèmes sur des équations différentielles à dérivées partielles, que l'on abrégera EDP à partit de maintenant, voyons l'application pour des equations différentielles classiques. 
 
-\subsection{Equations différentielles}
-
 \subsection{Préliminaires}
 
 On rappelle d'abord ce que sont des équations différentielles d'ordre 1 et 2 (nous n'allons pas utililser de dérivées d'ordre supérieures car les solutions seraient trop complexes):
@@ -907,7 +877,7 @@ On rappelle d'abord ce que sont des équations différentielles d'ordre 1 et 2 (
     Soit $ I = [t_0;\infty[$ un intervalle de $\mathbb{R},$ et $f \in C^1(I \times \mathbb{R}).$ On appelle le \textbf{problème de Cauchy} l'\textbf{équation différentielle d'ordre 1} suivante ayant $u \in C^1(\mathbb{R})$ comme solution:\\ 
     $$\left\{
         \begin{array}{ll}
-        u'(t) = f(t,u(t)), t \in I  &  \\
+        u'(t) = f(t,u(t)),\text{ } t \in I  &  \\
         u(t_0) = u_0& \\
     \end{array}
     \right.$$
@@ -917,7 +887,7 @@ On rappelle d'abord ce que sont des équations différentielles d'ordre 1 et 2 (
      Soit $ I = [t_0;\infty[$ un intervalle de $\mathbb{R},$ et $f \in C^1(I \times \mathbb{R} \times \mathbb{R}).$ On appelle le \textbf{problème de Cauchy} l'\textbf{équation différentielle d'ordre 2} suivante ayant $u \in C^1(\mathbb{R})$ comme solution:\\ 
     $$\left\{
         \begin{array}{lll}
-        u''(t) = f(t,u(t),u'(t)), t \in I  &  \\
+        u''(t) = f(t,u(t),u'(t)),\text{ } t \in I  &  \\
         u'(t_0) = u_1 & \\
         u(t_0) = u_0
     \end{array}
@@ -936,7 +906,7 @@ Dans ces deux définitions, on peut également prendre $I$ un intervalle cet foi
     Supposons que l'on veuille résoudre l'équation differentielle suivante :
     $$\left\{
         \begin{array}{lll}
-        a_2u''(t)+a_1u'(t)+a_0u(t)=f(t), t>0  &  \\
+        a_2u''(t)+a_1u'(t)+a_0u(t)=f(t),\text{ } t>0  &  \\
         u'(0) = u_1 & \\
         u(0) = u_0
     \end{array}
@@ -955,7 +925,7 @@ Dans ces deux définitions, on peut également prendre $I$ un intervalle cet foi
     \end{align*}
     On peut donc réécrire 
     $$U(z) = \frac{F(z)+a_2u_0z+a_2u_1+a_1u_0}{a_2z^2+a_1z+a_0}.$$
-    Et donc la solution recherchée $u(t)$ est la transformée de Laplace inverse de l'expression i.e.
+    Et donc la solution recherchée $u(t)$ est la transformée de Laplace inverse de l'expression c'est-à-dire
     $$u(t) = \mathcal{L}^{-1}\left(\frac{F(z)+a_2u_0z+a_2u_1+a_1u_0}{a_2z^2+a_1z+a_0}\right)(t).$$
 \end{example}
 
@@ -965,7 +935,7 @@ Voyons maintenant deux problèmes qui nous serons très utiles pour la suite :
     Soit $\lambda$ un réel quelconque et soit le problème de Cauchy suivant :
     $$\left\{
         \begin{array}{lll}
-        u''(t)+\lambda u(t)=0, t > 0  &  \\
+        u''(t)+\lambda u(t)=0,\text{ } t > 0  &  \\
         u'(0) = u_1 & \\
         u(0) = u_0
     \end{array}
@@ -994,7 +964,7 @@ Le deuxième problème est très similaire mais sa résolution est très différ
 Le but est de trouver des $\lambda \in \mathbb{R}$ tels que l'équation différentielle suivante admette une solution non-trivialle.
 $$\left\{
         \begin{array}{ll}
-        u''(t)+\lambda u(t)=0, t \in ]0,L[  &  \\
+        u''(t)+\lambda u(t)=0,\text{ } t \in ]0,L[  &  \\
         u(0) = 0 = u(L) 
     \end{array}
     \right.$$
@@ -1012,12 +982,12 @@ $$\left\{
     Supposons que l'on veuille résoudre l'équation suivante :
     $$\left\{
         \begin{array}{lll}
-        u''(t)- 16u(t)= 7\cos(3t)-2\sin(4t), t \in [0,2\pi]  &  \\
+        u''(t)- 16u(t)= 7\cos(3t)-2\sin(4t),\text{ } t \in [0,2\pi]  &  \\
         u(0) = u(2\pi)  &\\
         u'(0) = u'(2\pi).
     \end{array}
     \right.$$
-    Cette fois nous supposons que $u$ s'écrive comme une série de Fourier i.e. $\exists a_n, b_n \in \mathbb{R}, n \in \mathbb{N}$ tel que: 
+    Cette fois nous supposons que $u$ s'écrive comme une série de Fourier c'est-à-dire $\exists a_n, b_n \in \mathbb{R}, n \in \mathbb{N}$ tel que: 
     $$u(t) = a_0 + \sum_{n=1}^{\infty}a_n\cos(nx)+ b_n\sin(nx).$$
     On suppose de plus que $u$ est de classe $C^2$ et on peut dire que :
     $$u''(t) = -\sum_{n=1}^{\infty}n^2(a_n\cos(nt)+b_n\sin(nt))$$
@@ -1034,13 +1004,132 @@ $$\left\{
     Cette méthode est en fait généralisable à n'importe quelle fonction $f$ tant qu'elle est périodique et marche aussi avec des dérivées d'ordres plus élevés de $u$.
 
 \section{Equations à dérivées partielles}
-Dans cette section, nous allons uniquement considérer des fonctions continues à deux variables : $u(x,y)$ ou $u(x,t)$ dépendant du problème en question.
+Dans cette section, nous allons uniquement considérer des fonctions continues à deux variables pour ne pas avoir trop de paramètres à considérer. Ce sujet étant encore un domaine très étudié aujourd'hui, nous n'allons que survoler les idées qui l'entourent. 
+
 \begin{definition}
-    Soit $f$ une fonction continue 
+    Une équation aux dérivées partielles est une équation différentielle qui relie entre elles des dérivées partielles d'une fonction à plusieurs variables (dans notre cas, 2).
+\subsection{Exemples}
+    Historiquement, Joseph Fourier avait développé toute une théorie de la chaleur qui fonctionait grâce à une EDP.
 \end{definition}
 
-\pagebreak
 
+\begin{example}(Equation de la chaleur)
+On prend une barre de chaleur de longueur finie, L. Supposons que la fonction,$f:[0,L]\rightarrow \mathbb{R}$ (étendue par L-périodicité à $\mathbb{R}$) qui représente la température initiale de la barre soit de classe $C^1.$ On veut trouver une formule pour la fonction $u(x,t)$ qui determine la température en fonction de la position et du temps. Fourier a trouvé qu'elle devait satisfaisaire l'EDP suivante (avec $a$ non nul):
+$$\left\{
+        \begin{array}{lll}
+       \frac{\partial u}{\partial t}(x,t) = a^2 \frac{\partial^2u}{\partial x^2}(x,t), \text{ }x \in ]0,L[,\text{ } t>0  &  \\
+        u(0,t)=0=u(L,t),\text{ } t>0  &\\
+        u(x,0)=f(x),\text{ } x \in [0,L].
+    \end{array}
+    \right.$$   
+    On va commencer par ignorer les conditions aux bords. On admet que la solution finale puisse s'écrire comme une séparation de variables c'est-à-dire $u(x,t) = v(x)w(t)$ avec $v,w$ deux fonctions de classe $C^1.$
+    On a donc : $\frac{\partial u}{\partial t}(x,t) = v(x)w'(t)$ et $\frac{\partial^2u}{\partial x^2}(x,t)=v''(x)w(t).$ On peut en déduire que $v(x)w'(t)=a^2v''(x)w(t).$ Ce qui est équivalent à $\frac{v''(x)}{v(x)}=\frac{w'(t)}{a^2w(t)}.$ On remarque que la partie de gauche ne dépend que de la position et que celle de droite que du temps. En fixant donc la position et en faisant varier le temps, on a $\frac{w'(t)}{a^2w(t)}$ qui est constant. De même, en fixant le temps et en variant la position, $ \frac{v''(x)}{v(x)}$ restera constant. Appelons cette constante $-\lambda.$ \\
+    Reprenons maintenant les conditions aux bords: $u(0,t)=v(0)w(t)=0=u(L,t)=v(L)w(t).$ Comme cela doit être vrai pour tout $t>0,$ alors forcément $v(0)=v(L)=0.$
+    On doit donc résoudre deux équations différentielles différentes: 
+    $\left\{
+        \begin{array}{ll}
+       v''(x)+\lambda v(x)=0&  \\
+       v(0)=v(L)= 0.  
+    \end{array}
+    \right.$  et 
+       $w'(t)=-a^2\lambda w(t).$\\
+    L'équation différentielle en $v$ est le problème de Sturm-Liouville (voir \textit{Exemple 10}). Les solutions sont donc données par $v_n(x) = a_n\sin\left(\frac{n\pi}{L}x\right), a_n \in \mathbb{R}, n \in \mathbb{N},$ seulement quand $\lambda$ est de la forme $\lambda = \left(\frac{n\pi}{L}\right)^2, n \in \mathbb{N}.$ Quant à l'autre équation, il facile de voir que $w_n(t)=e^{-a^2\lambda t} = e^{-a^2\left(\frac{n\pi}{L}\right)^2t}, n \in \mathbb{N}$ est une solution.
+    Notre solution est donc de la forme $u_n(x,t) = a_n\sin\left(\frac{n\pi}{L}x\right)e^{-a^2\left(\frac{n\pi}{L}\right)^2t}, n \in \mathbb{N}.$ De par la définition de l'EDP, n'importe quelle combinaisons de solutions donnera une autre solution. On cherche donc une combinaisons de $u_n(x,t)$ tel que $\sum_{n=1}^{\infty}u_n(x,0) = u(x,0)=f(x).$ 
+    La clé est de comparer la série de $u_(x,0)$ à $f(x)$ et d'égaler les termes. Remarquons que ce que l'on peut construire ne peut qu'être une combinaison de sinus et donc $f$ doit aussi l'être sinon il n'y a pas de solutions au problème original. On peut donc dire que :
+    $$u(x,0) = \sum_{n=1}^{\infty}a_n\sin\left(\frac{n\pi}{L}\right)=f(x).$$ On a donc les coefficients $a_n$ qui sont donnés par :
+    $$a_n = \frac{2}{L}\int_0^Lf(t)\sin\left(\frac{n\pi}{L}t\right)dt, \text{ }n \in \mathbb{N^*}.$$
+    Et donc la solution finale est :
+    $$u(x,t) = a_n\sin\left(\frac{n\pi}{L}x\right)e^{-a^2\left(\frac{n\pi}{L}\right)^2t}.$$
+\end{example}
+
+\begin{example}
+    Supposons maintenant que l'on ait une barre de longueur infinie et que la fonction $f$ qui représente la température au temps $t=0$ soit de classe $C^1.$
+    L'EDP représentant la fonction $u(x,t)$ satisfait donc à :
+    $$\left\{
+        \begin{array}{ll}
+       \frac{\partial u}{\partial t}(x,t) = a^2\frac{\partial^2u}{\partial x^2}(x,t),\text{ } x\in \mathbb{R}, \text{ }t>0 &  \\
+       u(x,0) = f(x), \text{ }x \in \mathbb{R}.  
+    \end{array}
+    \right.$$
+    Prenons la transformée de Fourier en $x$ de l'égalité:
+    $\mathcal{F}\left(\frac{\partial^2 u}{\partial x^2}\right)(\alpha, t) = a^2\mathcal{F}\left(\frac{\partial u}{\partial t}\right)(\alpha,t).$
+    On pose une fonction $v(\alpha, t)$ définie pour tout $\alpha,t$ comme :
+    $$v(\alpha,t):= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}u(x,t)e^{-i\alpha x}dx.$$
+    Ce qui correspond à une transformée de Fourier d'une fonction à deux variables en $x$ ce que l'on notera $\mathcal{F}(u)(\alpha,t).$ 
+    Par les propriétés de la transformée de Fourier, on a :
+    $$\mathcal{F}\left(\frac{\partial^2 u}{\partial x^2}\right)(\alpha, t) = (i\alpha)^2\mathcal{F}(u)(\alpha,t) = -\alpha^2v(\alpha,t)$$
+    De même, 
+    $$\frac{\partial v}{\partial t}(\alpha,t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\frac{\partial}{\partial t}\left(u(x,t)e^{-i\alpha x}\right)dx = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\frac{\partial u}{\partial t}(x,t)e^{-i\alpha x}dx = \mathcal{F}\left(\frac{\partial u}{\partial t}\right)(\alpha,t).$$
+    En prenant $t=0$, on obtient que $v(\alpha,0) = \mathcal{F}(u)(\alpha,0) = \hat{f}(\alpha).$
+    On peut donc dire que $v$ devient la solution  de l'EDP suivante :
+    $$\left\{
+        \begin{array}{ll}
+        \frac{\partial v}{\partial t}(\alpha,t)= -a^2\alpha^2v(\alpha,t), \text{ } t >0  &  \\
+        v(\alpha,0) = \hat{f}(\alpha).
+    \end{array}
+    \right.$$
+    En divisant par $v(\alpha,t)$ puis en intégrant par rapport à $t$, on a :
+    \begin{align*}
+        &\int_0^t\frac{\frac{\partial v}{\partial t}(\alpha,s)}{v(\alpha,s)}ds = \int_0^t-a^2\alpha^2ds\\
+        \iff&[\ln(v(\alpha,s))]_0^t = -a^2\alpha^2[s]_0^t\\
+        \iff&\ln(v(\alpha,t))-\ln(\underbrace{v(\alpha,0)}_{=\hat{f}(\alpha)}) = -a^2\alpha^2(t-0)\\
+        \iff&v(\alpha,t)= \hat{f}(\alpha)e^{-a^2\alpha^2t}.
+    \end{align*}
+    Maintenant que l'on a une expression pour $v(\alpha,t),$ celle de $u(x,t)$ est la transformée de Fourier inverse de $v(\alpha,t)$ c'est-à-dire
+    $$u(x,t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}v(\alpha,t)e^{i\alpha x}d\alpha = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\hat{f}(\alpha)e^{i\alpha x-a^2\alpha^2 t}d\alpha.$$
+\end{example}
+
+Comme dernier exemple, en éléctro-magnétisme, l'équation des ondes est très utilisée pour savoir comment va se  propager une onde et nous la résoudrons en $1$ dimension. 
+
+\begin{example}(Equation des ondes)
+    Soit $L>0,$ $f,g:[0;L] \rightarrow \mathbb{R}$ deux fonctions de classe $C^2$ telles que $f(0)=f(L)=0=g(0)=g(L).$ On cherche à savoir comment une onde $u(x,t)$ se propagera en sachant qu'elle satisfait cette EDP ($c$ représente généralement la vitesse de la lumière):
+    $$\left\{
+        \begin{array}{llll}
+       \frac{\partial^2 u}{\partial t^2}(x,t) = c^2\frac{\partial^2u}{\partial x^2}(x,t), \text{ } x\in ]0,L[,\text{ } t>0 &  \\
+       u(0,t) = u(L,t) = 0, \text{ }t>0&\\
+       u(x,0) = f(x), \text{ }x \in ]0,L[. &\\
+       \frac{\partial u}{\partial t}(x,0) = g(x),\text{ } x\in ]0,L[
+    \end{array}
+    \right.$$
+Comme pour l'équation de la chaleur, on ignore pour l'instant les conditions initiales et on admet que $u(x,t) $ puisse s'écrire $ u(x,t)= v(x)w(t),$ avec $v,w$ deux fonctions de classe $C^2.$ Alors on a :
+$$\frac{\partial^2 u}{\partial t^2}(x,t)= v(x)w''(t)$$
+et
+$$\frac{\partial^2u}{\partial x^2}(x,t) = v''(x)w(t).$$
+Ces deux équations peuvent se réecrire comme :
+$$\frac{v''(x)}{v(x)}=\frac{w''(t)}{c^2w(t)}.$$
+Comme avant ces deux fractions doivent valoir une constante que l'on va à nouveau appeler $-\lambda.$
+Les conditions initiales sur $u$ nous permettent de dire $u(0,t) = v(0)w(t) = 0 = u(L,t) = v(L)w(t).$ Et donc $u(0) = u(L) = 0.$
+Comme avant on se retrouve avec deux équations différentielles :
+ $$\left\{
+        \begin{array}{ll}
+       v''(x)+\lambda v(x)=0&  \\
+       v(0)=v(L)= 0.  
+    \end{array}
+    \right.  \text{ et } 
+       w''(t)+c^2\lambda w(t)=0.$$
+    Les deux équations sont des problèmes que nous avons vu avant, la solution n'existe que quand $\lambda = \left(\frac{n\pi}{L}\right)^2$ et vaut donc  $v_n(x) = \sin\left(\frac{n\pi}{L}x\right)$ et $w_n(t) = a_n\cos\left(\frac{n\pi c}{L}t\right)+b_n\sin\left(\frac{n\pi c}{L}\right).$ On a donc une solution au problème :
+    $$u_n(x,t) = \sin\left(\frac{n\pi}{L}x\right)\left(a_n\cos\left(\frac{n\pi c}{L}t\right)+b_n\sin\left(\frac{n\pi c}{L}\right)\right)$$
+    En prenant une série de ces $u_n(x,t),$ que l'on va noter $u(x,t)$ on veut $u(x,0)=f(x),$ $x\in]0,L[$ ainsi que $\frac{\partial u}{\partial t}(x,0) = g(x),$ $x \in ]0,L[.$
+    Par définition de $u(x,0),$ on a :
+    $$u(x,0) = \sum_{n=1}^{\infty}a_n\sin\left(\frac{n\pi}{L}x\right) = f(x).$$ Ainsi on doit prendre $a_n$ défini par :
+    $$a_n = \frac{2}{L}\int_0^Lf(t)\sin\left(\frac{n\pi}{L}t\right)dt, \text{ }n\in \mathbb{N^*}$$
+    pour ce que l'on veut.   \\
+    Comme $\frac{\partial u}{\partial t}(x,0)$ est continue par rapport à $x$ on peut dériver la série de Fourier terme par terme. Autrement dit, 
+    $$\frac{\partial u}{\partial t}(x,0) = \sum_{n=1}^{\infty}b_n\frac{n\pi c}{L}\sin\left(\frac{n\pi}{L}x\right) = g(x).$$
+    On prend $b_n$ de sorte à avoir 
+    \begin{align*}
+    &b_n\frac{n\pi c}{L} = \frac{2}{L}\int_0^Lg(t)\sin\left(\frac{n\pi}{L}t\right)dt\\
+    \implies &b_n = \frac{2}{n\pi c}\int_0^L g(t)\sin\left(\frac{n\pi}{L}t\right)dt, \text{ } n \in \mathbb{N^*}.
+     \end{align*}
+     Et donc en prenant $a_n, b_n$ comme vu plus haut,
+     $$u(x,t) = \sum_{n=1}^{\infty}\sin\left(\frac{n\pi}{L}x\right)\left(a_n\cos\left(\frac{n\pi c}{L}t\right)+b_n\sin\left(\frac{n\pi c}{L}t\right)\right)$$
+     satisfait toutes les conditions que l'on voulait.
+\end{example}
+Il y a d'autres EDP avec des conditions aux bords plus compliqués mais nous n'irons pas plus loin dans ce travail.
+\pagebreak
+\section{Conclusion}
+En conclusion, on a vu comment combiner des sinus et des cosinus pour exprimer des fonctions périodiques. Puis on a défini des fonctions de classe $L^1$ pour en prendre la transformée de Fourier. On a ensuite défini une autre notion similaire pour les fonctions qui ne sont pas de classe $L^1$ avant de tout mettre ensemble pour résoudre d'abord des équations différentielles puis des EDP.
+\pagebreak
 \section{Références}
  [1] Dacorogna, B., \& Tanteri, C. (2018). \textit{Analyse avancée pour ingénieurs} (4e éd.). Presses polytechniques et universitaires romandes. \\
 \end{document}
